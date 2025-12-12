@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Home } from 'telecop';
 import 'telecop/style.css';
 import { gradients } from '@/data/gradients';
-import './animations.css';
 export default function ThemesPage() {
   const [selectedGradient, setSelectedGradient] = useState(gradients[0]);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -56,16 +55,18 @@ export default function ThemesPage() {
                 selectedGradient.animation ? `animated-${selectedGradient.animation}` : ''
               }`}
             >
-              <Home
-                name="Your Name"
-                title="Your Title"
-                description="Your amazing description goes here"
-                primaryButtonText="Get Started"
-                primaryButtonLink="#"
-                secondaryButtonText="Learn More"
-                secondaryButtonLink="#"
-                backgroundGradient={selectedGradient.gradient}
-              />
+   <Home
+   key={selectedGradient.id}
+  name="Your Name"
+  title="Your Title"
+  description="Your amazing description goes here"
+  primaryButtonText="Get Started"
+  primaryButtonLink="#"
+  secondaryButtonText="Learn More"
+  secondaryButtonLink="#"
+  backgroundGradient={selectedGradient.gradient}
+  animationType={selectedGradient.animation}  // ← جديد!
+/>
             </div>
 
             {/* Code Block */}
@@ -79,15 +80,21 @@ export default function ThemesPage() {
                   {copySuccess ? '✓ Copied!' : 'Copy'}
                 </button>
               </div>
-              <pre className="p-4 overflow-x-auto">
-                <code className="text-sm text-gray-300">
+    <pre className="p-4 overflow-x-auto">
+  <code className="text-sm text-gray-300">
 {`<Home
-  name="Your Name"
-  title="Your Title"
-  backgroundGradient="${selectedGradient.gradient}"
+  name="Laith Alawad"
+  title="Full Stack Developer"
+  description="Building beautiful and modern web applications"
+  primaryButtonText="View Projects"
+  primaryButtonLink="/projects"
+  secondaryButtonText="Contact Me"
+  secondaryButtonLink="/contact"
+  backgroundGradient="${selectedGradient.gradient}"${selectedGradient.animation ? `
+  animationType="${selectedGradient.animation}"` : ''}
 />`}
-                </code>
-              </pre>
+  </code>
+</pre>
             </div>
           </div>
 
@@ -159,7 +166,7 @@ export default function ThemesPage() {
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
                       <p className="text-white text-sm font-semibold flex items-center gap-2">
                         {grad.name}
-                        {grad.category === 'animated' && <span className="text-xs">✨</span>}
+                        {grad.category === 'animated' }
                       </p>
                       <p className="text-gray-300 text-xs capitalize">
                         {grad.category}
