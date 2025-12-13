@@ -30,7 +30,7 @@ export default function Home() {
       <Container size="lg">
         <div className="space-y-4">
           <h1 className="text-white text-4xl mb-4">Large Container</h1>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <SolidBlue>Button 1</SolidBlue>
             <SolidBlue>Button 2</SolidBlue>
             <SolidBlue>Button 3</SolidBlue>
@@ -38,12 +38,13 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* Extra: Full Width */}
       <div className="h-20" />
+      
+      {/* Full Width Container */}
       <Container size="full">
         <div className="space-y-4">
           <h1 className="text-white text-4xl mb-4">Full Width Container</h1>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <SolidBlue>1</SolidBlue>
             <GradientPurplePink>2</GradientPurplePink>
             <SolidBlue>3</SolidBlue>
