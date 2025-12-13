@@ -8,12 +8,13 @@ interface ButtonVariant {
   name: string;
   category: 'solid' | 'gradient' | 'glass' | 'animated' | 'outlined' | 'ghost';
   component: React.ComponentType;
-  code: string;
+  importName: string; // 🆕 اسم الـ import
+  code: string; // 🆕 الكود البسيط
 }
 
 // ==================== BUTTON COMPONENTS ====================
+// (نفس الكومبوننتات السابقة...)
 
-// SOLID BUTTONS
 const SolidBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
     Click Me
@@ -44,7 +45,6 @@ const SolidPill = () => (
   </button>
 );
 
-// GRADIENT BUTTONS
 const GradientPurplePink = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50">
     Click Me
@@ -75,7 +75,6 @@ const GradientSunset = () => (
   </button>
 );
 
-// GLASS BUTTONS
 const GlassBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-500/20 backdrop-blur-xl border border-blue-400/30 hover:bg-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
     Click Me
@@ -100,7 +99,6 @@ const GlassPink = () => (
   </button>
 );
 
-// ANIMATED BUTTONS
 const AnimatedShimmer = () => (
   <button className="relative px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 overflow-hidden group transition-all duration-300 hover:scale-105">
     <span className="relative z-10">Shimmer Effect</span>
@@ -126,7 +124,6 @@ const AnimatedGlow = () => (
   </button>
 );
 
-// OUTLINED BUTTONS
 const OutlinedBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-105">
     Click Me
@@ -140,12 +137,11 @@ const OutlinedPurple = () => (
 );
 
 const OutlinedGradient = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 border-2 border-transparent bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white hover:bg-clip-border transition-all duration-300 hover:scale-105" style={{borderImage: 'linear-gradient(to right, rgb(168, 85, 247), rgb(236, 72, 153)) 1'}}>
+  <button className="px-6 py-3 rounded-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 border-2 border-transparent hover:text-white transition-all duration-300 hover:scale-105" style={{borderImage: 'linear-gradient(to right, rgb(168, 85, 247), rgb(236, 72, 153)) 1'}}>
     Gradient Border
   </button>
 );
 
-// GHOST BUTTONS
 const GhostBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-blue-500 hover:bg-blue-500/10 transition-all duration-300 hover:scale-105">
     Click Me
@@ -164,7 +160,6 @@ const GhostPurple = () => (
   </button>
 );
 
-// 3D EFFECT BUTTONS
 const Button3DBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-[0_6px_0_rgb(37,99,235)] hover:shadow-[0_4px_0_rgb(37,99,235)] hover:translate-y-[2px] transition-all duration-150">
     3D Button
@@ -183,7 +178,6 @@ const Button3DGreen = () => (
   </button>
 );
 
-// NEON BUTTONS
 const NeonBlue = () => (
   <button className="px-6 py-3 rounded-lg font-semibold text-blue-400 border-2 border-blue-400 hover:bg-blue-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.8)] hover:scale-105">
     Neon Blue
@@ -202,53 +196,263 @@ const NeonGreen = () => (
   </button>
 );
 
-// ==================== BUTTONS DATA ====================
+// ==================== BUTTONS DATA (محدث بالكود الجديد) ====================
 const buttons: ButtonVariant[] = [
   // SOLID
-  { id: 'solid-blue', name: 'Solid Blue', category: 'solid', component: SolidBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">Click Me</button>' },
-  { id: 'solid-red', name: 'Solid Red', category: 'solid', component: SolidRed, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">Click Me</button>' },
-  { id: 'solid-green', name: 'Solid Green', category: 'solid', component: SolidGreen, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">Click Me</button>' },
-  { id: 'solid-purple', name: 'Solid Purple', category: 'solid', component: SolidPurple, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">Click Me</button>' },
-  { id: 'solid-pill', name: 'Pill Button', category: 'solid', component: SolidPill, code: '<button className="px-8 py-3 rounded-full font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">Pill Button</button>' },
+  { 
+    id: 'solid-blue', 
+    name: 'Solid Blue', 
+    category: 'solid', 
+    component: SolidBlue, 
+    importName: 'SolidBlue',
+    code: `import { SolidBlue } from 'telecop';\n\n<SolidBlue>Click Me</SolidBlue>` 
+  },
+  { 
+    id: 'solid-red', 
+    name: 'Solid Red', 
+    category: 'solid', 
+    component: SolidRed, 
+    importName: 'SolidRed',
+    code: `import { SolidRed } from 'telecop';\n\n<SolidRed>Click Me</SolidRed>` 
+  },
+  { 
+    id: 'solid-green', 
+    name: 'Solid Green', 
+    category: 'solid', 
+    component: SolidGreen, 
+    importName: 'SolidGreen',
+    code: `import { SolidGreen } from 'telecop';\n\n<SolidGreen>Click Me</SolidGreen>` 
+  },
+  { 
+    id: 'solid-purple', 
+    name: 'Solid Purple', 
+    category: 'solid', 
+    component: SolidPurple, 
+    importName: 'SolidPurple',
+    code: `import { SolidPurple } from 'telecop';\n\n<SolidPurple>Click Me</SolidPurple>` 
+  },
+  { 
+    id: 'solid-pill', 
+    name: 'Pill Button', 
+    category: 'solid', 
+    component: SolidPill, 
+    importName: 'SolidPill',
+    code: `import { SolidPill } from 'telecop';\n\n<SolidPill>Pill Button</SolidPill>` 
+  },
   
   // GRADIENT
-  { id: 'gradient-purple-pink', name: 'Purple Pink', category: 'gradient', component: GradientPurplePink, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50">Click Me</button>' },
-  { id: 'gradient-blue-green', name: 'Blue Green', category: 'gradient', component: GradientBlueGreen, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50">Click Me</button>' },
-  { id: 'gradient-orange-red', name: 'Orange Red', category: 'gradient', component: GradientOrangeRed, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">Click Me</button>' },
-  { id: 'gradient-cyan', name: 'Cyan Blue', category: 'gradient', component: GradientCyan, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-br from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/50">Click Me</button>' },
-  { id: 'gradient-sunset', name: 'Sunset', category: 'gradient', component: GradientSunset, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-yellow-500 via-orange-500 to-red-600 hover:from-yellow-600 hover:via-orange-600 hover:to-red-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">Click Me</button>' },
+  { 
+    id: 'gradient-purple-pink', 
+    name: 'Purple Pink', 
+    category: 'gradient', 
+    component: GradientPurplePink, 
+    importName: 'GradientPurplePink',
+    code: `import { GradientPurplePink } from 'telecop';\n\n<GradientPurplePink>Click Me</GradientPurplePink>` 
+  },
+  { 
+    id: 'gradient-blue-green', 
+    name: 'Blue Green', 
+    category: 'gradient', 
+    component: GradientBlueGreen, 
+    importName: 'GradientBlueGreen',
+    code: `import { GradientBlueGreen } from 'telecop';\n\n<GradientBlueGreen>Click Me</GradientBlueGreen>` 
+  },
+  { 
+    id: 'gradient-orange-red', 
+    name: 'Orange Red', 
+    category: 'gradient', 
+    component: GradientOrangeRed, 
+    importName: 'GradientOrangeRed',
+    code: `import { GradientOrangeRed } from 'telecop';\n\n<GradientOrangeRed>Click Me</GradientOrangeRed>` 
+  },
+  { 
+    id: 'gradient-cyan', 
+    name: 'Cyan Blue', 
+    category: 'gradient', 
+    component: GradientCyan, 
+    importName: 'GradientCyan',
+    code: `import { GradientCyan } from 'telecop';\n\n<GradientCyan>Click Me</GradientCyan>` 
+  },
+  { 
+    id: 'gradient-sunset', 
+    name: 'Sunset', 
+    category: 'gradient', 
+    component: GradientSunset, 
+    importName: 'GradientSunset',
+    code: `import { GradientSunset } from 'telecop';\n\n<GradientSunset>Click Me</GradientSunset>` 
+  },
   
   // GLASS
-  { id: 'glass-blue', name: 'Glass Blue', category: 'glass', component: GlassBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-500/20 backdrop-blur-xl border border-blue-400/30 hover:bg-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">Click Me</button>' },
-  { id: 'glass-purple', name: 'Glass Purple', category: 'glass', component: GlassPurple, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-500/20 backdrop-blur-xl border border-purple-400/30 hover:bg-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">Click Me</button>' },
-  { id: 'glass-white', name: 'Glass White', category: 'glass', component: GlassWhite, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/20">Click Me</button>' },
-  { id: 'glass-pink', name: 'Glass Pink', category: 'glass', component: GlassPink, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-pink-500/20 backdrop-blur-xl border border-pink-400/30 hover:bg-pink-500/30 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20">Click Me</button>' },
+  { 
+    id: 'glass-blue', 
+    name: 'Glass Blue', 
+    category: 'glass', 
+    component: GlassBlue, 
+    importName: 'GlassBlue',
+    code: `import { GlassBlue } from 'telecop';\n\n<GlassBlue>Click Me</GlassBlue>` 
+  },
+  { 
+    id: 'glass-purple', 
+    name: 'Glass Purple', 
+    category: 'glass', 
+    component: GlassPurple, 
+    importName: 'GlassPurple',
+    code: `import { GlassPurple } from 'telecop';\n\n<GlassPurple>Click Me</GlassPurple>` 
+  },
+  { 
+    id: 'glass-white', 
+    name: 'Glass White', 
+    category: 'glass', 
+    component: GlassWhite, 
+    importName: 'GlassWhite',
+    code: `import { GlassWhite } from 'telecop';\n\n<GlassWhite>Click Me</GlassWhite>` 
+  },
+  { 
+    id: 'glass-pink', 
+    name: 'Glass Pink', 
+    category: 'glass', 
+    component: GlassPink, 
+    importName: 'GlassPink',
+    code: `import { GlassPink } from 'telecop';\n\n<GlassPink>Click Me</GlassPink>` 
+  },
   
   // ANIMATED
-  { id: 'animated-shimmer', name: 'Shimmer', category: 'animated', component: AnimatedShimmer, code: '<button className="relative px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 overflow-hidden group transition-all duration-300 hover:scale-105"><span className="relative z-10">Shimmer Effect</span><span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span></button>' },
-  { id: 'animated-pulse', name: 'Pulse', category: 'animated', component: AnimatedPulse, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition-all duration-300 animate-pulse hover:animate-none hover:scale-105">Pulse Button</button>' },
-  { id: 'animated-bounce', name: 'Bounce', category: 'animated', component: AnimatedBounce, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:animate-bounce">Bounce Button</button>' },
-  { id: 'animated-glow', name: 'Glow', category: 'animated', component: AnimatedGlow, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.8)] hover:scale-105">Glow Effect</button>' },
+  { 
+    id: 'animated-shimmer', 
+    name: 'Shimmer', 
+    category: 'animated', 
+    component: AnimatedShimmer, 
+    importName: 'AnimatedShimmer',
+    code: `import { AnimatedShimmer } from 'telecop';\n\n<AnimatedShimmer>Shimmer Effect</AnimatedShimmer>` 
+  },
+  { 
+    id: 'animated-pulse', 
+    name: 'Pulse', 
+    category: 'animated', 
+    component: AnimatedPulse, 
+    importName: 'AnimatedPulse',
+    code: `import { AnimatedPulse } from 'telecop';\n\n<AnimatedPulse>Pulse Button</AnimatedPulse>` 
+  },
+  { 
+    id: 'animated-bounce', 
+    name: 'Bounce', 
+    category: 'animated', 
+    component: AnimatedBounce, 
+    importName: 'AnimatedBounce',
+    code: `import { AnimatedBounce } from 'telecop';\n\n<AnimatedBounce>Bounce Button</AnimatedBounce>` 
+  },
+  { 
+    id: 'animated-glow', 
+    name: 'Glow', 
+    category: 'animated', 
+    component: AnimatedGlow, 
+    importName: 'AnimatedGlow',
+    code: `import { AnimatedGlow } from 'telecop';\n\n<AnimatedGlow>Glow Effect</AnimatedGlow>` 
+  },
   
   // OUTLINED
-  { id: 'outlined-blue', name: 'Outlined Blue', category: 'outlined', component: OutlinedBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-105">Click Me</button>' },
-  { id: 'outlined-purple', name: 'Outlined Purple', category: 'outlined', component: OutlinedPurple, code: '<button className="px-6 py-3 rounded-lg font-semibold text-purple-500 border-2 border-purple-500 hover:bg-purple-500 hover:text-white transition-all duration-300 hover:scale-105">Click Me</button>' },
-  { id: 'outlined-gradient', name: 'Gradient Border', category: 'outlined', component: OutlinedGradient, code: '<button className="px-6 py-3 rounded-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 border-2 hover:text-white transition-all duration-300 hover:scale-105">Gradient Border</button>' },
+  { 
+    id: 'outlined-blue', 
+    name: 'Outlined Blue', 
+    category: 'outlined', 
+    component: OutlinedBlue, 
+    importName: 'OutlinedBlue',
+    code: `import { OutlinedBlue } from 'telecop';\n\n<OutlinedBlue>Click Me</OutlinedBlue>` 
+  },
+  { 
+    id: 'outlined-purple', 
+    name: 'Outlined Purple', 
+    category: 'outlined', 
+    component: OutlinedPurple, 
+    importName: 'OutlinedPurple',
+    code: `import { OutlinedPurple } from 'telecop';\n\n<OutlinedPurple>Click Me</OutlinedPurple>` 
+  },
+  { 
+    id: 'outlined-gradient', 
+    name: 'Gradient Border', 
+    category: 'outlined', 
+    component: OutlinedGradient, 
+    importName: 'OutlinedGradient',
+    code: `import { OutlinedGradient } from 'telecop';\n\n<OutlinedGradient>Gradient Border</OutlinedGradient>` 
+  },
   
   // GHOST
-  { id: 'ghost-blue', name: 'Ghost Blue', category: 'ghost', component: GhostBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-blue-500 hover:bg-blue-500/10 transition-all duration-300 hover:scale-105">Click Me</button>' },
-  { id: 'ghost-red', name: 'Ghost Red', category: 'ghost', component: GhostRed, code: '<button className="px-6 py-3 rounded-lg font-semibold text-red-500 hover:bg-red-500/10 transition-all duration-300 hover:scale-105">Click Me</button>' },
-  { id: 'ghost-purple', name: 'Ghost Purple', category: 'ghost', component: GhostPurple, code: '<button className="px-6 py-3 rounded-lg font-semibold text-purple-500 hover:bg-purple-500/10 transition-all duration-300 hover:scale-105">Click Me</button>' },
+  { 
+    id: 'ghost-blue', 
+    name: 'Ghost Blue', 
+    category: 'ghost', 
+    component: GhostBlue, 
+    importName: 'GhostBlue',
+    code: `import { GhostBlue } from 'telecop';\n\n<GhostBlue>Click Me</GhostBlue>` 
+  },
+  { 
+    id: 'ghost-red', 
+    name: 'Ghost Red', 
+    category: 'ghost', 
+    component: GhostRed, 
+    importName: 'GhostRed',
+    code: `import { GhostRed } from 'telecop';\n\n<GhostRed>Click Me</GhostRed>` 
+  },
+  { 
+    id: 'ghost-purple', 
+    name: 'Ghost Purple', 
+    category: 'ghost', 
+    component: GhostPurple, 
+    importName: 'GhostPurple',
+    code: `import { GhostPurple } from 'telecop';\n\n<GhostPurple>Click Me</GhostPurple>` 
+  },
   
   // 3D BUTTONS
-  { id: '3d-blue', name: '3D Blue', category: 'solid', component: Button3DBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-[0_6px_0_rgb(37,99,235)] hover:shadow-[0_4px_0_rgb(37,99,235)] hover:translate-y-[2px] transition-all duration-150">3D Button</button>' },
-  { id: '3d-pink', name: '3D Pink', category: 'solid', component: Button3DPink, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-pink-600 shadow-[0_6px_0_rgb(219,39,119)] hover:shadow-[0_4px_0_rgb(219,39,119)] hover:translate-y-[2px] transition-all duration-150">3D Button</button>' },
-  { id: '3d-green', name: '3D Green', category: 'solid', component: Button3DGreen, code: '<button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 shadow-[0_6px_0_rgb(22,163,74)] hover:shadow-[0_4px_0_rgb(22,163,74)] hover:translate-y-[2px] transition-all duration-150">3D Button</button>' },
+  { 
+    id: '3d-blue', 
+    name: '3D Blue', 
+    category: 'solid', 
+    component: Button3DBlue, 
+    importName: 'Button3DBlue',
+    code: `import { Button3DBlue } from 'telecop';\n\n<Button3DBlue>3D Button</Button3DBlue>` 
+  },
+  { 
+    id: '3d-pink', 
+    name: '3D Pink', 
+    category: 'solid', 
+    component: Button3DPink, 
+    importName: 'Button3DPink',
+    code: `import { Button3DPink } from 'telecop';\n\n<Button3DPink>3D Button</Button3DPink>` 
+  },
+  { 
+    id: '3d-green', 
+    name: '3D Green', 
+    category: 'solid', 
+    component: Button3DGreen, 
+    importName: 'Button3DGreen',
+    code: `import { Button3DGreen } from 'telecop';\n\n<Button3DGreen>3D Button</Button3DGreen>` 
+  },
   
   // NEON BUTTONS
-  { id: 'neon-blue', name: 'Neon Blue', category: 'animated', component: NeonBlue, code: '<button className="px-6 py-3 rounded-lg font-semibold text-blue-400 border-2 border-blue-400 hover:bg-blue-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.8)] hover:scale-105">Neon Blue</button>' },
-  { id: 'neon-pink', name: 'Neon Pink', category: 'animated', component: NeonPink, code: '<button className="px-6 py-3 rounded-lg font-semibold text-pink-400 border-2 border-pink-400 hover:bg-pink-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.8)] hover:scale-105">Neon Pink</button>' },
-  { id: 'neon-green', name: 'Neon Green', category: 'animated', component: NeonGreen, code: '<button className="px-6 py-3 rounded-lg font-semibold text-green-400 border-2 border-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:scale-105">Neon Green</button>' },
+  { 
+    id: 'neon-blue', 
+    name: 'Neon Blue', 
+    category: 'animated', 
+    component: NeonBlue, 
+    importName: 'NeonBlue',
+    code: `import { NeonBlue } from 'telecop';\n\n<NeonBlue>Neon Blue</NeonBlue>` 
+  },
+  { 
+    id: 'neon-pink', 
+    name: 'Neon Pink', 
+    category: 'animated', 
+    component: NeonPink, 
+    importName: 'NeonPink',
+    code: `import { NeonPink } from 'telecop';\n\n<NeonPink>Neon Pink</NeonPink>` 
+  },
+  { 
+    id: 'neon-green', 
+    name: 'Neon Green', 
+    category: 'animated', 
+    component: NeonGreen, 
+    importName: 'NeonGreen',
+    code: `import { NeonGreen } from 'telecop';\n\n<NeonGreen>Neon Green</NeonGreen>` 
+  },
 ];
 
 // ==================== PAGE COMPONENT ====================
@@ -306,7 +510,7 @@ export default function ButtonsPage() {
                 </button>
               </div>
               <pre className="p-4 overflow-x-auto">
-                <code className="text-sm text-gray-300 break-all whitespace-pre-wrap">
+                <code className="text-sm text-gray-300">
                   {selectedButton.code}
                 </code>
               </pre>
@@ -341,7 +545,7 @@ export default function ButtonsPage() {
               ))}
             </div>
             
-     {/* Scrollable Buttons Grid */}
+            {/* Scrollable Buttons Grid */}
             <div className="h-[calc(100vh-16rem)] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
               <div className="grid grid-cols-2 gap-4">
                 {filteredButtons.map((btn) => (
