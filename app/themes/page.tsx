@@ -4,16 +4,18 @@ import { useState } from 'react';
 import { Home } from 'telecop';
 import 'telecop/style.css';
 import { gradients } from '@/data/gradients';
+
 export default function ThemesPage() {
   const [selectedGradient, setSelectedGradient] = useState(gradients[0]);
   const [copySuccess, setCopySuccess] = useState(false);
-  const [filter, setFilter] = useState<'all' | 'static' | 'animated'>('all');
+  const [filter, setFilter] = useState<'all' | 'static' | 'animated' | 'premium'>('all');
 
   const handleCopy = () => {
     const codeText = `<Home
   name="Your Name"
   title="Your Title"
-  backgroundGradient="${selectedGradient.gradient}"
+  backgroundGradient="${selectedGradient.gradient}"${selectedGradient.animation ? `
+  animationType="${selectedGradient.animation}"` : ''}
 />`;
     navigator.clipboard.writeText(codeText);
     setCopySuccess(true);
@@ -23,8 +25,9 @@ export default function ThemesPage() {
   // Filter gradients
   const filteredGradients = gradients.filter((grad) => {
     if (filter === 'all') return true;
-    if (filter === 'static') return grad.category !== 'animated';
+    if (filter === 'static') return grad.category !== 'animated' && grad.category !== 'premium';
     if (filter === 'animated') return grad.category === 'animated';
+    if (filter === 'premium') return grad.category === 'premium';
     return true;
   });
 
@@ -45,7 +48,12 @@ export default function ThemesPage() {
           <div className="space-y-4 lg:sticky lg:top-28 lg:self-start">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Live Preview</h2>
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-gray-400 flex items-center gap-2">
+                {selectedGradient.category === 'premium' && (
+                  <span className="px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded text-xs font-semibold">
+                    ✨ PREMIUM
+                  </span>
+                )}
                 {selectedGradient.name}
               </div>
             </div>
@@ -55,18 +63,18 @@ export default function ThemesPage() {
                 selectedGradient.animation ? `animated-${selectedGradient.animation}` : ''
               }`}
             >
-   <Home
-   key={selectedGradient.id}
-  name="Your Name"
-  title="Your Title"
-  description="Your amazing description goes here"
-  primaryButtonText="Get Started"
-  primaryButtonLink="#"
-  secondaryButtonText="Learn More"
-  secondaryButtonLink="#"
-  backgroundGradient={selectedGradient.gradient}
-  animationType={selectedGradient.animation}  // ← جديد!
-/>
+              <Home
+                key={selectedGradient.id}
+                name="Your Name"
+                title="Your Title"
+                description="Your amazing description goes here"
+                primaryButtonText="Get Started"
+                primaryButtonLink="#"
+                secondaryButtonText="Learn More"
+                secondaryButtonLink="#"
+                backgroundGradient={selectedGradient.gradient}
+                animationType={selectedGradient.animation}
+              />
             </div>
 
             {/* Code Block */}
@@ -80,8 +88,8 @@ export default function ThemesPage() {
                   {copySuccess ? '✓ Copied!' : 'Copy'}
                 </button>
               </div>
-    <pre className="p-4 overflow-x-auto">
-  <code className="text-sm text-gray-300">
+              <pre className="p-4 overflow-x-auto">
+                <code className="text-sm text-gray-300">
 {`<Home
   name="Laith Alawad"
   title="Full Stack Developer"
@@ -93,8 +101,8 @@ export default function ThemesPage() {
   backgroundGradient="${selectedGradient.gradient}"${selectedGradient.animation ? `
   animationType="${selectedGradient.animation}"` : ''}
 />`}
-  </code>
-</pre>
+                </code>
+              </pre>
             </div>
           </div>
 
@@ -102,14 +110,17 @@ export default function ThemesPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Available Themes</h2>
+              <span className="text-sm text-gray-500">
+                {filteredGradients.length} themes
+              </span>
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex gap-2 p-1 bg-gray-900 rounded-lg border border-gray-800">
+            <div className="grid grid-cols-4 gap-2 p-1 bg-gray-900 rounded-lg border border-gray-800">
               <button
                 onClick={() => setFilter('all')}
                 className={`
-                  flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all
+                  px-3 py-2 rounded-md text-sm font-medium transition-all
                   ${filter === 'all' 
                     ? 'bg-blue-600 text-white shadow-lg' 
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -119,9 +130,21 @@ export default function ThemesPage() {
                 All 
               </button>
               <button
+                onClick={() => setFilter('premium')}
+                className={`
+                  px-3 py-2 rounded-md text-sm font-medium transition-all
+                  ${filter === 'premium' 
+                    ? 'bg-yellow-600 text-white shadow-lg' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                  }
+                `}
+              >
+                ✨ Premium
+              </button>
+              <button
                 onClick={() => setFilter('static')}
                 className={`
-                  flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all
+                  px-3 py-2 rounded-md text-sm font-medium transition-all
                   ${filter === 'static' 
                     ? 'bg-blue-600 text-white shadow-lg' 
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
@@ -133,14 +156,14 @@ export default function ThemesPage() {
               <button
                 onClick={() => setFilter('animated')}
                 className={`
-                  flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2
+                  px-3 py-2 rounded-md text-sm font-medium transition-all
                   ${filter === 'animated' 
                     ? 'bg-blue-600 text-white shadow-lg' 
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
                   }
                 `}
               >
-                <span>Animated </span>
+                Animated
               </button>
             </div>
             
@@ -165,8 +188,8 @@ export default function ThemesPage() {
                     
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
                       <p className="text-white text-sm font-semibold flex items-center gap-2">
+                        {grad.category === 'premium' && '✨ '}
                         {grad.name}
-                        {grad.category === 'animated' }
                       </p>
                       <p className="text-gray-300 text-xs capitalize">
                         {grad.category}
@@ -210,3 +233,4 @@ export default function ThemesPage() {
     </div>
   );
 }
+
