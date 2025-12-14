@@ -12,7 +12,7 @@
     "next": "16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "telecop": "^0.1.22"
+    "telecop": "^0.1.24"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
