@@ -2,7 +2,41 @@
 
 import { useState } from 'react';
 
-// Button Types Interface
+// ✅ استيراد من المكتبة مباشرة
+import { 
+  SolidBlue,
+  SolidRed,
+  SolidGreen,
+  SolidPurple,
+  SolidPill,
+  GradientPurplePink,
+  GradientBlueGreen,
+  GradientOrangeRed,
+  GradientCyan,
+  GradientSunset,
+  GlassBlue,
+  GlassPurple,
+  GlassWhite,
+  GlassPink,
+  AnimatedShimmer,
+  AnimatedPulse,
+  AnimatedBounce,
+  AnimatedGlow,
+  OutlinedBlue,
+  OutlinedPurple,
+  OutlinedGradient,
+  GhostBlue,
+  GhostRed,
+  GhostPurple,
+  Button3DBlue,
+  Button3DPink,
+  Button3DGreen,
+  NeonBlue,
+  NeonPink,
+  NeonGreen
+} from 'telecop';
+
+// ==================== BUTTON TYPES ====================
 interface ButtonVariant {
   id: string;
   name: string;
@@ -11,188 +45,6 @@ interface ButtonVariant {
   importName: string;
   code: string;
 }
-
-// ==================== BUTTON COMPONENTS ====================
-const SolidBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-    Click Me
-  </button>
-);
-
-const SolidRed = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-    Click Me
-  </button>
-);
-
-const SolidGreen = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-    Click Me
-  </button>
-);
-
-const SolidPurple = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-    Click Me
-  </button>
-);
-
-const SolidPill = () => (
-  <button className="px-8 py-3 rounded-full font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-    Pill Button
-  </button>
-);
-
-const GradientPurplePink = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50">
-    Click Me
-  </button>
-);
-
-const GradientBlueGreen = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50">
-    Click Me
-  </button>
-);
-
-const GradientOrangeRed = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">
-    Click Me
-  </button>
-);
-
-const GradientCyan = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-br from-cyan-400 to-blue-600 hover:from-cyan-500 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/50">
-    Click Me
-  </button>
-);
-
-const GradientSunset = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-yellow-500 via-orange-500 to-red-600 hover:from-yellow-600 hover:via-orange-600 hover:to-red-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/50">
-    Click Me
-  </button>
-);
-
-const GlassBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-500/20 backdrop-blur-xl border border-blue-400/30 hover:bg-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
-    Click Me
-  </button>
-);
-
-const GlassPurple = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-500/20 backdrop-blur-xl border border-purple-400/30 hover:bg-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
-    Click Me
-  </button>
-);
-
-const GlassWhite = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-white/10 backdrop-blur-xl border border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/20">
-    Click Me
-  </button>
-);
-
-const GlassPink = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-pink-500/20 backdrop-blur-xl border border-pink-400/30 hover:bg-pink-500/30 hover:border-pink-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20">
-    Click Me
-  </button>
-);
-
-const AnimatedShimmer = () => (
-  <button className="relative px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-blue-600 overflow-hidden group transition-all duration-300 hover:scale-105">
-    <span className="relative z-10">Shimmer Effect</span>
-    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-  </button>
-);
-
-const AnimatedPulse = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition-all duration-300 animate-pulse hover:animate-none hover:scale-105">
-    Pulse Button
-  </button>
-);
-
-const AnimatedBounce = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:animate-bounce">
-    Bounce Button
-  </button>
-);
-
-const AnimatedGlow = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.8)] hover:scale-105">
-    Glow Effect
-  </button>
-);
-
-const OutlinedBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-105">
-    Click Me
-  </button>
-);
-
-const OutlinedPurple = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-purple-500 border-2 border-purple-500 hover:bg-purple-500 hover:text-white transition-all duration-300 hover:scale-105">
-    Click Me
-  </button>
-);
-
-const OutlinedGradient = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 border-2 border-transparent hover:text-white transition-all duration-300 hover:scale-105" style={{borderImage: 'linear-gradient(to right, rgb(168, 85, 247), rgb(236, 72, 153)) 1'}}>
-    Gradient Border
-  </button>
-);
-
-const GhostBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-blue-500 hover:bg-blue-500/10 transition-all duration-300 hover:scale-105">
-    Click Me
-  </button>
-);
-
-const GhostRed = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-red-500 hover:bg-red-500/10 transition-all duration-300 hover:scale-105">
-    Click Me
-  </button>
-);
-
-const GhostPurple = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-purple-500 hover:bg-purple-500/10 transition-all duration-300 hover:scale-105">
-    Click Me
-  </button>
-);
-
-const Button3DBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-[0_6px_0_rgb(37,99,235)] hover:shadow-[0_4px_0_rgb(37,99,235)] hover:translate-y-[2px] transition-all duration-150">
-    3D Button
-  </button>
-);
-
-const Button3DPink = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-pink-600 shadow-[0_6px_0_rgb(219,39,119)] hover:shadow-[0_4px_0_rgb(219,39,119)] hover:translate-y-[2px] transition-all duration-150">
-    3D Button
-  </button>
-);
-
-const Button3DGreen = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 shadow-[0_6px_0_rgb(22,163,74)] hover:shadow-[0_4px_0_rgb(22,163,74)] hover:translate-y-[2px] transition-all duration-150">
-    3D Button
-  </button>
-);
-
-const NeonBlue = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-blue-400 border-2 border-blue-400 hover:bg-blue-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.8)] hover:scale-105">
-    Neon Blue
-  </button>
-);
-
-const NeonPink = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-pink-400 border-2 border-pink-400 hover:bg-pink-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.8)] hover:scale-105">
-    Neon Pink
-  </button>
-);
-
-const NeonGreen = () => (
-  <button className="px-6 py-3 rounded-lg font-semibold text-green-400 border-2 border-green-400 hover:bg-green-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.8)] hover:scale-105">
-    Neon Green
-  </button>
-);
 
 // ==================== BUTTONS DATA ====================
 const buttons: ButtonVariant[] = [
