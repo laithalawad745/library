@@ -57,7 +57,7 @@ const ProductCardPreview = () => (
     description="High-quality sound with noise cancellation"
     price="99"
     oldPrice="149"
-    badge="Sale"
+ 
     variant="solid"
   >
     <SolidBlue>Add to Cart</SolidBlue>
@@ -70,7 +70,6 @@ const ProductCardGlass = () => (
     title="Smart Watch"
     description="Track your fitness and health"
     price="299"
-    badge="New"
     variant="glass"
   >
     <div className="flex gap-2">
@@ -125,7 +124,7 @@ const cards: CardVariant[] = [
     category: 'feature',
     description: 'Glass morphism style card',
     component: FeatureCardPreview,
-    code: `// ✅ Server Component - no 'use client' needed
+    code: `
 import { FeatureCard } from 'telecop';
 
 export default function Page() {
@@ -188,7 +187,7 @@ export default function Page() {
     category: 'product',
     description: 'Product with image and price',
     component: ProductCardPreview,
-    code: `// ✅ Server Component - no 'use client'
+    code: `
 import { 
   ProductCard, 
   SolidBlue 
@@ -201,7 +200,6 @@ export default function Page() {
       title="Premium Headphones"
       price="99"
       oldPrice="149"
-      badge="Sale"
     >
       <SolidBlue>
         Add to Cart
@@ -228,7 +226,6 @@ export default function Page() {
       image="/product.jpg"
       title="Smart Watch"
       price="299"
-      badge="New"
       variant="glass"
     >
       <div className="flex gap-2">
