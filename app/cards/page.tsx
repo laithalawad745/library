@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { 
   FeatureCard,
   ProductCard,
-  StatCard
+  StatCard,
+  SolidBlue,
+  GradientPurplePink
 } from 'telecop';
 
 // ==================== CARD VARIANTS DATA ====================
@@ -57,8 +59,9 @@ const ProductCardPreview = () => (
     oldPrice="149"
     badge="Sale"
     variant="solid"
-    onAddToCart={() => alert('Added to cart!')}
-  />
+  >
+    <SolidBlue>Add to Cart</SolidBlue>
+  </ProductCard>
 );
 
 const ProductCardGlass = () => (
@@ -69,8 +72,12 @@ const ProductCardGlass = () => (
     price="299"
     badge="New"
     variant="glass"
-    onAddToCart={() => alert('Added to cart!')}
-  />
+  >
+    <div className="flex gap-2">
+      <SolidBlue>Buy Now</SolidBlue>
+      <GradientPurplePink>♥</GradientPurplePink>
+    </div>
+  </ProductCard>
 );
 
 const StatCardPreview = () => (
@@ -118,15 +125,20 @@ const cards: CardVariant[] = [
     category: 'feature',
     description: 'Glass morphism style card',
     component: FeatureCardPreview,
-    code: `import { FeatureCard } from 'telecop';
+    code: `// ✅ Server Component - no 'use client' needed
+import { FeatureCard } from 'telecop';
 
-<FeatureCard
-  icon="🚀"
-  title="Fast Performance"
-  description="Lightning fast"
-  variant="glass"
-  theme="blue"
-/>`
+export default function Page() {
+  return (
+    <FeatureCard
+      icon="🚀"
+      title="Fast Performance"
+      description="Lightning fast"
+      variant="glass"
+      theme="blue"
+    />
+  );
+}`
   },
   {
     id: 'feature-gradient',
@@ -136,13 +148,17 @@ const cards: CardVariant[] = [
     component: FeatureCardGradient,
     code: `import { FeatureCard } from 'telecop';
 
-<FeatureCard
-  icon="🎨"
-  title="Beautiful Design"
-  description="Modern UI"
-  variant="gradient"
-  theme="purple"
-/>`
+export default function Page() {
+  return (
+    <FeatureCard
+      icon="🎨"
+      title="Beautiful Design"
+      description="Modern UI"
+      variant="gradient"
+      theme="purple"
+    />
+  );
+}`
   },
   {
     id: 'feature-solid',
@@ -152,13 +168,17 @@ const cards: CardVariant[] = [
     component: FeatureCardSolid,
     code: `import { FeatureCard } from 'telecop';
 
-<FeatureCard
-  icon="🔒"
-  title="Secure & Safe"
-  description="Top security"
-  variant="solid"
-  theme="green"
-/>`
+export default function Page() {
+  return (
+    <FeatureCard
+      icon="🔒"
+      title="Secure & Safe"
+      description="Top security"
+      variant="solid"
+      theme="green"
+    />
+  );
+}`
   },
 
   // PRODUCT CARDS
@@ -168,40 +188,60 @@ const cards: CardVariant[] = [
     category: 'product',
     description: 'Product with image and price',
     component: ProductCardPreview,
-    code: `import { ProductCard } from 'telecop';
+    code: `// ✅ Server Component - no 'use client'
+import { 
+  ProductCard, 
+  SolidBlue 
+} from 'telecop';
 
-<ProductCard
-  image="/product.jpg"
-  title="Premium Headphones"
-  description="High quality"
-  price="99"
-  oldPrice="149"
-  badge="Sale"
-  variant="solid"
-  onAddToCart={() => 
-    alert('Added!')
-  }
-/>`
+export default function Page() {
+  return (
+    <ProductCard
+      image="/product.jpg"
+      title="Premium Headphones"
+      price="99"
+      oldPrice="149"
+      badge="Sale"
+    >
+      <SolidBlue>
+        Add to Cart
+      </SolidBlue>
+    </ProductCard>
+  );
+}`
   },
   {
     id: 'product-glass',
     name: 'Product Card - Glass',
     category: 'product',
-    description: 'Glass style product card',
+    description: 'Glass style with buttons',
     component: ProductCardGlass,
-    code: `import { ProductCard } from 'telecop';
+    code: `import { 
+  ProductCard, 
+  SolidBlue,
+  GradientPurplePink 
+} from 'telecop';
 
-<ProductCard
-  image="/product.jpg"
-  title="Smart Watch"
-  description="Track fitness"
-  price="299"
-  badge="New"
-  variant="glass"
-  onAddToCart={() => 
-    alert('Added!')
-  }
-/>`
+export default function Page() {
+  return (
+    <ProductCard
+      image="/product.jpg"
+      title="Smart Watch"
+      price="299"
+      badge="New"
+      variant="glass"
+    >
+      <div className="flex gap-2">
+        <SolidBlue>
+          Buy Now
+        </SolidBlue>
+        <GradientPurplePink>
+          ♥
+        </GradientPurplePink>
+      </div>
+    </ProductCard>
+  );
+}`
   },
 
   // STAT CARDS
@@ -213,15 +253,19 @@ const cards: CardVariant[] = [
     component: StatCardPreview,
     code: `import { StatCard } from 'telecop';
 
-<StatCard
-  icon="👥"
-  label="Total Users"
-  value="12,345"
-  change="+12%"
-  trend="up"
-  theme="blue"
-  variant="glass"
-/>`
+export default function Page() {
+  return (
+    <StatCard
+      icon="👥"
+      label="Total Users"
+      value="12,345"
+      change="+12%"
+      trend="up"
+      theme="blue"
+      variant="glass"
+    />
+  );
+}`
   },
   {
     id: 'stat-gradient',
@@ -231,15 +275,19 @@ const cards: CardVariant[] = [
     component: StatCardGreen,
     code: `import { StatCard } from 'telecop';
 
-<StatCard
-  icon="💰"
-  label="Revenue"
-  value="$45.2K"
-  change="+8.2%"
-  trend="up"
-  theme="green"
-  variant="gradient"
-/>`
+export default function Page() {
+  return (
+    <StatCard
+      icon="💰"
+      label="Revenue"
+      value="$45.2K"
+      change="+8.2%"
+      trend="up"
+      theme="green"
+      variant="gradient"
+    />
+  );
+}`
   },
   {
     id: 'stat-solid',
@@ -249,15 +297,19 @@ const cards: CardVariant[] = [
     component: StatCardRed,
     code: `import { StatCard } from 'telecop';
 
-<StatCard
-  icon="📦"
-  label="Orders"
-  value="1,234"
-  change="-3%"
-  trend="down"
-  theme="red"
-  variant="solid"
-/>`
+export default function Page() {
+  return (
+    <StatCard
+      icon="📦"
+      label="Orders"
+      value="1,234"
+      change="-3%"
+      trend="down"
+      theme="red"
+      variant="solid"
+    />
+  );
+}`
   },
 ];
 
@@ -284,7 +336,7 @@ export default function CardsPage() {
       <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-50">
         <div className="w-full px-4 sm:px-6 py-4">
           <h1 className="text-xl sm:text-2xl font-bold text-white">Telecop Cards</h1>
-          <p className="text-gray-400 mt-1 text-sm">Beautiful card components</p>
+          <p className="text-gray-400 mt-1 text-sm">Beautiful card components - No 'use client' needed</p>
         </div>
       </header>
 
@@ -325,6 +377,13 @@ export default function CardsPage() {
                   </code>
                 </pre>
               </div>
+            </div>
+
+            {/* Note */}
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
+              <p className="text-blue-300 text-xs">
+                💡 <strong>Tip:</strong> For interactivity, wrap with 'use client' or use onClick on buttons inside children
+              </p>
             </div>
           </div>
 
