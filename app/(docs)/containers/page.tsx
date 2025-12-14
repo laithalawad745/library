@@ -26,13 +26,13 @@ interface ContainerVariant {
 const ImageRightPreview = () => (
   <Container layout="image-right" size="lg" theme="glass-morphism" gap="sm">
     <ContainerImage 
-      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600" 
+      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" 
       alt="Demo"
     />
     <ContainerContent>
-      <h2 className="text-2xl font-bold text-white mb-2">Image Right</h2>
-      <p className="text-gray-300 text-sm mb-3">
-        صورة على اليمين والمحتوى على اليسار.
+      <h2 className="text-3xl font-bold text-white mb-3">Image Right Layout</h2>
+      <p className="text-gray-300 mb-4">
+       Image on the right, content on the left. Ideal for showcasing products or features.
       </p>
       <ContainerButton>
         <SolidBlue>Get Started</SolidBlue>
@@ -44,13 +44,13 @@ const ImageRightPreview = () => (
 const ImageLeftPreview = () => (
   <Container layout="image-left" size="lg" theme="aurora-dream" gap="sm">
     <ContainerImage 
-      src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600" 
+      src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800" 
       alt="Demo"
     />
     <ContainerContent>
-      <h2 className="text-2xl font-bold text-white mb-2">Image Left</h2>
-      <p className="text-gray-300 text-sm mb-3">
-        صورة على اليسار والمحتوى على اليمين.
+      <h2 className="text-3xl font-bold text-white mb-3">Image Left Layout</h2>
+      <p className="text-gray-300 mb-4">
+Image on the left, content on the right. An attractive reverse layout.
       </p>
       <ContainerButton>
         <GradientPurplePink>Explore</GradientPurplePink>
@@ -61,14 +61,14 @@ const ImageLeftPreview = () => (
 
 const ButtonRightPreview = () => (
   <Container layout="button-right" size="lg" theme="neon-cyber" gap="sm">
-    <ContainerButton className="flex-col items-start gap-2">
-      <SolidBlue>Primary</SolidBlue>
-      <GradientPurplePink>Secondary</GradientPurplePink>
+    <ContainerButton className="flex-col items-start gap-3">
+      <SolidBlue>Primary Action</SolidBlue>
+      <GradientPurplePink>Secondary Action</GradientPurplePink>
     </ContainerButton>
     <ContainerContent>
-      <h2 className="text-2xl font-bold text-white mb-2">Button Right</h2>
-      <p className="text-gray-300 text-sm">
-        أزرار على اليمين والشرح على اليسار.
+      <h2 className="text-3xl font-bold text-white mb-3">Button Right Layout</h2>
+      <p className="text-gray-300">
+Buttons on the right, explanation on the left. Ideal for Call to Actions.
       </p>
     </ContainerContent>
   </Container>
@@ -76,14 +76,14 @@ const ButtonRightPreview = () => (
 
 const ButtonLeftPreview = () => (
   <Container layout="button-left" size="lg" theme="cosmic-particles" gap="sm">
-    <ContainerButton className="flex-col items-start gap-2">
-      <GradientPurplePink>Start</GradientPurplePink>
-      <NeonBlue>Demo</NeonBlue>
+    <ContainerButton className="flex-col items-start gap-3">
+      <GradientPurplePink>Start Now</GradientPurplePink>
+      <NeonBlue>Live Demo</NeonBlue>
     </ContainerButton>
     <ContainerContent>
-      <h2 className="text-2xl font-bold text-white mb-2">Button Left</h2>
-      <p className="text-gray-300 text-sm">
-        أزرار على اليسار والشرح على اليمين.
+      <h2 className="text-3xl font-bold text-white mb-3">Button Left Layout</h2>
+      <p className="text-gray-300">
+Buttons on the left, explanation on the right. Reverse button layout.
       </p>
     </ContainerContent>
   </Container>
@@ -92,13 +92,12 @@ const ButtonLeftPreview = () => (
 const CenterPreview = () => (
   <Container layout="center" size="md" theme="glass-morphism" gap="sm">
     <ContainerContent>
-      <h2 className="text-3xl font-bold text-white mb-3">Centered</h2>
-      <p className="text-gray-300 mb-4">
-        محتوى في المنتصف.
-      </p>
-      <ContainerButton className="justify-center flex-wrap gap-2">
-        <SolidBlue>Start</SolidBlue>
-        <GradientPurplePink>Learn</GradientPurplePink>
+      <h2 className="text-4xl font-bold text-white mb-4">Center Layout</h2>
+      <p className="text-gray-300 mb-6 max-w-2xl">
+All content is centered. Perfect for home pages.      </p>
+      <ContainerButton className="justify-center flex-wrap gap-3">
+        <SolidBlue>Get Started</SolidBlue>
+        <GradientPurplePink>Learn More</GradientPurplePink>
       </ContainerButton>
     </ContainerContent>
   </Container>
@@ -107,16 +106,16 @@ const CenterPreview = () => (
 const TwoColumnsPreview = () => (
   <Container layout="two-columns" size="lg" theme="aurora-dream" gap="sm">
     <ContainerContent>
-      <h3 className="text-xl font-bold text-white mb-2">Column 1</h3>
-      <p className="text-gray-300 text-sm mb-2">
-        محتوى العمود الأول.
+      <h3 className="text-2xl font-bold text-white mb-3">Column One</h3>
+      <p className="text-gray-300 mb-4">
+The content of the first column, with a detailed description of the content.
       </p>
       <SolidBlue>Action 1</SolidBlue>
     </ContainerContent>
     <ContainerContent>
-      <h3 className="text-xl font-bold text-white mb-2">Column 2</h3>
-      <p className="text-gray-300 text-sm mb-2">
-        محتوى العمود الثاني.
+      <h3 className="text-2xl font-bold text-white mb-3">Column Two</h3>
+      <p className="text-gray-300 mb-4">
+       The content of the second column, with a detailed description of the content.
       </p>
       <GradientPurplePink>Action 2</GradientPurplePink>
     </ContainerContent>
@@ -126,23 +125,23 @@ const TwoColumnsPreview = () => (
 const ThreeColumnsPreview = () => (
   <Container layout="three-columns" size="xl" theme="neon-cyber" gap="sm">
     <ContainerContent>
-      <h3 className="text-lg font-bold text-white mb-1">Feature 1</h3>
-      <p className="text-gray-300 text-xs mb-2">
-        وصف الميزة.
+      <h3 className="text-xl font-bold text-white mb-2">Feature One</h3>
+      <p className="text-gray-300 text-sm mb-3">
+       Describe the first feature briefly and clearly.
       </p>
       <SolidBlue>More</SolidBlue>
     </ContainerContent>
     <ContainerContent>
-      <h3 className="text-lg font-bold text-white mb-1">Feature 2</h3>
-      <p className="text-gray-300 text-xs mb-2">
-        وصف الميزة.
+      <h3 className="text-xl font-bold text-white mb-2">Feature Two</h3>
+      <p className="text-gray-300 text-sm mb-3">
+       Describe the second feature briefly and clearly.
       </p>
       <GradientPurplePink>Explore</GradientPurplePink>
     </ContainerContent>
     <ContainerContent>
-      <h3 className="text-lg font-bold text-white mb-1">Feature 3</h3>
-      <p className="text-gray-300 text-xs mb-2">
-        وصف الميزة.
+      <h3 className="text-xl font-bold text-white mb-2">Feature Three</h3>
+      <p className="text-gray-300 text-sm mb-3">
+       Describe the third feature briefly and clearly.
       </p>
       <NeonBlue>Discover</NeonBlue>
     </ContainerContent>
@@ -406,8 +405,10 @@ const containers: ContainerVariant[] = [
 
 // ==================== PAGE COMPONENT ====================
 export default function ContainersPage() {
-  const [selectedContainer, setSelectedContainer] = useState(containers[0]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [copySuccess, setCopySuccess] = useState(false);
+
+  const selectedContainer = containers[selectedIndex];
 
   const handleCopy = () => {
     navigator.clipboard.writeText(selectedContainer.code);
@@ -415,116 +416,96 @@ export default function ContainersPage() {
     setTimeout(() => setCopySuccess(false), 2000);
   };
 
+  const handlePrevious = () => {
+    setSelectedIndex(prev => prev > 0 ? prev - 1 : containers.length - 1);
+  };
+
+  const handleNext = () => {
+    setSelectedIndex(prev => prev < containers.length - 1 ? prev + 1 : 0);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-950">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-50">
-        <div className="w-full px-4 sm:px-6 py-4">
+    <div className="min-h-screen bg-gray-950 overflow-x-hidden">
+      {/* Header - Fixed for Mobile */}
+      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-30">
+        <div className="w-full px-4 sm:px-6 py-3 sm:py-4 pl-16 lg:pl-6">
           <h1 className="text-xl sm:text-2xl font-bold text-white">Telecop Containers</h1>
           <p className="text-gray-400 mt-1 text-sm">Flexible layout components</p>
         </div>
       </header>
 
-      <div className="w-full px-4 sm:px-6 py-6 sm:py-8">
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto">
-          
-          {/* Live Preview */}
-          <div className="space-y-4 lg:sticky lg:top-28 lg:self-start w-full min-w-0">
-            <div className="flex items-center justify-between gap-2">
-              <h2 className="text-lg sm:text-xl font-bold text-white truncate">Live Preview</h2>
-              <div className="text-xs sm:text-sm text-gray-400 truncate">
-                {selectedContainer.name}
-              </div>
-            </div>
-            
-            {/* Preview Container */}
-            <div className="rounded-2xl overflow-hidden shadow-2xl bg-gray-900 w-full">
-              <div className="w-full overflow-hidden">
-                <selectedContainer.component />
-              </div>
-            </div>
-
-            {/* Code Block */}
-            <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden w-full">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-gray-800">
-                <span className="text-xs text-gray-400 font-mono">Code</span>
-                <button
-                  onClick={handleCopy}
-                  className="px-2 py-1 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
-                >
-                  {copySuccess ? '✓' : 'Copy'}
-                </button>
-              </div>
-              <div className="overflow-x-auto">
-                <pre className="p-3 text-[9px] sm:text-[10px] leading-tight">
-                  <code className="text-gray-300">
-                    {selectedContainer.code}
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </div>
-
-          {/* Containers List */}
-          <div className="space-y-4 w-full min-w-0">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg sm:text-xl font-bold text-white">Layouts</h2>
-              <span className="text-xs text-gray-500">
-                {containers.length}
-              </span>
-            </div>
-            
-            {/* List */}
-            <div className="space-y-3 max-h-[600px] overflow-y-auto">
-              {containers.map((container) => (
-                <button
-                  key={container.id}
-                  onClick={() => setSelectedContainer(container)}
-                  className={`
-                    w-full relative rounded-xl
-                    bg-gray-900 p-4
-                    transition-all duration-300 cursor-pointer
-                    border-2 text-left
-                    ${selectedContainer.id === container.id
-                      ? 'border-blue-500 shadow-lg shadow-blue-500/20'
-                      : 'border-gray-700 hover:border-gray-600'
-                    }
-                  `}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1 min-w-0">
-                      <p className="text-base font-semibold text-white mb-1 truncate">
-                        {container.name}
-                      </p>
-                      <p className="text-xs text-gray-400 mb-2">
-                        {container.description}
-                      </p>
-                      <div className="flex items-center gap-1 text-[10px] text-gray-500 flex-wrap">
-                        <span className="px-2 py-0.5 bg-gray-800 rounded truncate max-w-[100px]">
-                          {container.layout}
-                        </span>
-                        <span className="px-2 py-0.5 bg-gray-800 rounded truncate max-w-[100px]">
-                          {container.theme}
-                        </span>
-                      </div>
-                    </div>
-
-                    {selectedContainer.id === container.id && (
-                      <div className="flex-shrink-0">
-                        <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
+      <div className="w-full px-3 sm:px-4 lg:px-6 py-4 sm:py-8 max-w-7xl mx-auto">
+        
+        {/* Number Tabs */}
+        <div className="mb-6 sm:mb-8">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl sm:rounded-2xl p-2 sm:p-3 overflow-x-auto scrollbar-hide max-w-full lg:max-w-2xl mx-auto">
+            {containers.map((container, index) => (
+              <button
+                key={container.id}
+                onClick={() => setSelectedIndex(index)}
+                className={`
+                  flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg
+                  transition-all duration-300
+                  ${selectedIndex === index
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/50 scale-110'
+                    : 'bg-gray-800/50 text-gray-400 hover:bg-gray-700 hover:text-white'
+                  }
+                `}
+              >
+                {index + 1}
+              </button>
+            ))}
           </div>
         </div>
+
+        {/* Live Preview - Full Width */}
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3 sm:mb-4">
+            <h2 className="text-lg sm:text-xl font-bold text-white">Live Preview</h2>
+            <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+            
+              <span className="text-gray-400 px-2 sm:px-3 py-1 bg-gray-800 rounded-lg truncate max-w-[150px] sm:max-w-none">
+                {selectedContainer.name}
+              </span>
+            </div>
+          </div>
+          
+          <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+            <selectedContainer.component />
+          </div>
+        </div>
+
+        {/* Code Block */}
+        <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden mb-6 sm:mb-8">
+          <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-800">
+            <span className="text-xs sm:text-sm text-gray-400 font-mono">Code</span>
+            <button
+              onClick={handleCopy}
+              className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+            >
+              {copySuccess ? '✓' : 'Copy'}
+            </button>
+          </div>
+          <pre className="p-3 sm:p-4 overflow-x-auto">
+            <code className="text-xs sm:text-sm text-gray-300 block">
+              {selectedContainer.code}
+            </code>
+          </pre>
+        </div>
+
+    
       </div>
+
+      {/* Hide scrollbar for number tabs */}
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 }
