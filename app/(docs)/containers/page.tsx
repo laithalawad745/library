@@ -11,7 +11,7 @@ import {
   GradientPurplePink, 
   NeonBlue,
   gradients,
-  
+  Button3DGreen,
   type Gradient,
   type ContainerLayout,
   type ContainerTheme
@@ -69,8 +69,9 @@ const ButtonRightPreview = () => (
   <Container layout="button-right" size="lg" theme="neon-cyber" gap="sm" className='p-4'>
     <ContainerButton className="flex-col items-start gap-3">
       <SolidBlue>Primary Action</SolidBlue>
-      <GradientPurplePink>Secondary Action</GradientPurplePink>
-    </ContainerButton>
+
+
+<Button3DGreen>3D Button</Button3DGreen>    </ContainerButton>
     <ContainerContent>
       <h2 className="text-3xl font-bold text-white mb-3">Button Right Layout</h2>
       <p className="text-gray-300">
