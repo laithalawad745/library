@@ -407,9 +407,7 @@ export default function CardsPage() {
           <div className="space-y-4 w-full min-w-0">
             <div className="flex items-center justify-between">
               <h2 className="text-lg sm:text-xl font-bold text-white">Available Cards</h2>
-              <span className="text-xs text-gray-500">
-                {filteredCards.length}
-              </span>
+         
             </div>
 
             {/* Filter Buttons */}

@@ -35,12 +35,12 @@ export default function ThemesPage() {
   });
 
   return (
-    <div className="bg-gray-950 w-full overflow-x-hidden">
+      <div className="min-h-screen bg-gray-950">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-30 w-full">
-        <div className="w-full px-4 sm:px-6 py-3 sm:py-4 pl-16 lg:pl-6">
-          <h1 className="text-xl sm:text-2xl font-bold text-white">Telecop Themes</h1>
-          <p className="text-gray-400 mt-1 text-sm">Choose your perfect gradient</p>
+      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-30">
+        <div className="w-full px-4 sm:px-6 py-4 pl-16 lg:pl-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-white">Telecop Cards</h1>
+          <p className="text-gray-400 mt-1 text-sm">Beautiful card components - No 'use client' needed</p>
         </div>
       </header>
 
