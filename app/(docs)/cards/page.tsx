@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
-// ✅ استيراد من المكتبة مباشرة
 import { 
   FeatureCard,
   ProductCard,
@@ -59,6 +57,7 @@ const ProductCardPreview = () => (
     description="High-quality sound with noise cancellation"
     price="99"
     oldPrice="149"
+ 
     variant="solid"
   >
     <SolidBlue>Add to Cart</SolidBlue>
@@ -125,7 +124,8 @@ const cards: CardVariant[] = [
     category: 'feature',
     description: 'Glass morphism style card',
     component: FeatureCardPreview,
-    code: `import { FeatureCard } from 'telecop';
+    code: `
+import { FeatureCard } from 'telecop';
 
 export default function Page() {
   return (
@@ -187,7 +187,8 @@ export default function Page() {
     category: 'product',
     description: 'Product with image and price',
     component: ProductCardPreview,
-    code: `import { 
+    code: `
+import { 
   ProductCard, 
   SolidBlue 
 } from 'telecop';

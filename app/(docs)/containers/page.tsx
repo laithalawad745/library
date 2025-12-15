@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-
-import { 
+import {
   Container, 
   ContainerButton, 
   ContainerContent, 
@@ -11,46 +10,52 @@ import {
   GradientPurplePink, 
   NeonBlue,
   gradients,
-  Button3DGreen,
-  type Gradient,
-  type ContainerLayout,
-  type ContainerTheme
+  Button3DGreen ,
+  type Gradient
 } from 'telecop';
 
 // ==================== CONTAINER VARIANTS DATA ====================
 interface ContainerVariant {
   id: string;
   name: string;
-  layout: ContainerLayout;
-  theme: ContainerTheme;
+  layout: 'image-right' | 'image-left' | 'button-right' | 'button-left' | 'center' | 'two-columns' | 'three-columns';
+  themeId: string; // 🆕 استخدام ID من gradients
   code: string;
   description: string;
   component: React.ComponentType;
 }
 
-// ==================== PREVIEW COMPONENTS ====================
-const ImageRightPreview = () => (
-  <Container layout="image-right" size="lg" theme="glass-morphism" gap="sm" className='p-4'>
-    <ContainerImage 
-      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" 
-      alt="Demo"
-    />
-    <ContainerContent>
-      <h2 className="text-3xl font-bold text-white mb-3">Image Right Layout</h2>
-      <p className="text-gray-300 mb-4">
-        Image on the right, content on the left. Ideal for showcasing products or features.
-      </p>
-      <ContainerButton>
-        <SolidBlue>Get Started</SolidBlue>
-      </ContainerButton>
-    </ContainerContent>
-  </Container>
-);
+// 🆕 Helper function للحصول على الـ gradient من المكتبة
+const getGradientById = (id: string): Gradient | undefined => {
+  return gradients.find(g => g.id === id);
+};
+
+// ==================== PREVIEW COMPONENTS (محدثة) ====================
+const ImageRightPreview = () => {
+  const theme = getGradientById('glass-morphism');
+  return (
+    <Container layout="image-right" size="lg" theme="glass-morphism" gap="sm" className='p-4'>
+      <ContainerImage 
+        src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" 
+        alt="Demo"
+      />
+      <ContainerContent>
+        <h2 className="text-3xl font-bold text-white mb-3">Image Right Layout</h2>
+        <p className="text-gray-300 mb-4">
+          Image on the right, content on the left. Ideal for showcasing products or features.
+        </p>
+        <ContainerButton>
+          <SolidBlue>Get Started</SolidBlue>
+        </ContainerButton>
+      </ContainerContent>
+    </Container>
+  );
+};
 
 const ImageLeftPreview = () => (
-  <Container layout="image-left" size="lg" theme="aurora-dream" gap="sm" className='p-4'>
+  <Container layout="image-left" size="lg" theme="aurora-dream" gap="sm"  className='p-4'>
     <ContainerImage 
-      src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" 
+      src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800" 
       alt="Demo"
     />
     <ContainerContent>
@@ -58,20 +63,22 @@ const ImageLeftPreview = () => (
       <p className="text-gray-300 mb-4">
         Image on the left, content on the right. An attractive reverse layout.
       </p>
-   <ContainerButton>
-        <SolidBlue>Get Started</SolidBlue>
+      <ContainerButton>
+        <GradientPurplePink>Explore</GradientPurplePink>
       </ContainerButton>
     </ContainerContent>
   </Container>
 );
 
 const ButtonRightPreview = () => (
-  <Container layout="button-right" size="lg" theme="neon-cyber" gap="sm" className='p-4'>
+  <Container layout="button-right" size="lg" theme="neon-cyber" gap="sm"  className='p-4'>
     <ContainerButton className="flex-col items-start gap-3">
       <SolidBlue>Primary Action</SolidBlue>
 
 
-<Button3DGreen>3D Button</Button3DGreen>    </ContainerButton>
+<Button3DGreen>3D Button</Button3DGreen>   
+
+ </ContainerButton>
     <ContainerContent>
       <h2 className="text-3xl font-bold text-white mb-3">Button Right Layout</h2>
       <p className="text-gray-300">
@@ -82,7 +89,7 @@ const ButtonRightPreview = () => (
 );
 
 const ButtonLeftPreview = () => (
-  <Container layout="button-left" size="lg" theme="cosmic-particles" gap="sm" className='p-4'>
+  <Container layout="button-left" size="lg" theme="cosmic-particles" gap="sm"  className='p-4'>
     <ContainerButton className="flex-col items-start gap-3">
       <GradientPurplePink>Start Now</GradientPurplePink>
       <NeonBlue>Live Demo</NeonBlue>
@@ -97,7 +104,7 @@ const ButtonLeftPreview = () => (
 );
 
 const CenterPreview = () => (
-  <Container layout="center" size="md" theme="glass-morphism" gap="sm" className='p-4'>
+  <Container layout="center" size="md" theme="glass-morphism" gap="sm"  className='p-4'> 
     <ContainerContent>
       <h2 className="text-4xl font-bold text-white mb-4">Center Layout</h2>
       <p className="text-gray-300 mb-6 max-w-2xl">
@@ -112,7 +119,7 @@ const CenterPreview = () => (
 );
 
 const TwoColumnsPreview = () => (
-  <Container layout="two-columns" size="lg" theme="aurora-dream" gap="sm" className='p-4'>
+  <Container layout="two-columns" size="lg" theme="aurora-dream" gap="sm"  className='p-4'>
     <ContainerContent>
       <h3 className="text-2xl font-bold text-white mb-3">Column One</h3>
       <p className="text-gray-300 mb-4">
@@ -131,7 +138,7 @@ const TwoColumnsPreview = () => (
 );
 
 const ThreeColumnsPreview = () => (
-  <Container layout="three-columns" size="xl" theme="neon-cyber" gap="sm" className='p-4'>
+  <Container layout="three-columns" size="xl" theme="neon-cyber" gap="sm"  className='p-4'>
     <ContainerContent>
       <h3 className="text-xl font-bold text-white mb-2">Feature One</h3>
       <p className="text-gray-300 text-sm mb-3">
@@ -156,13 +163,13 @@ const ThreeColumnsPreview = () => (
   </Container>
 );
 
-// ==================== CONTAINERS DATA ====================
+// ==================== CONTAINERS DATA (محدث) ====================
 const containers: ContainerVariant[] = [
   {
     id: 'image-right',
     name: 'Image Right',
     layout: 'image-right',
-    theme: 'glass-morphism',
+    themeId: 'glass-morphism',
     description: 'Image right + content left',
     component: ImageRightPreview,
     code: `import {
@@ -195,7 +202,7 @@ const containers: ContainerVariant[] = [
     id: 'image-left',
     name: 'Image Left',
     layout: 'image-left',
-    theme: 'aurora-dream',
+    themeId: 'aurora-dream',
     description: 'Image left + content right',
     component: ImageLeftPreview,
     code: `import {
@@ -228,7 +235,7 @@ const containers: ContainerVariant[] = [
     id: 'button-right',
     name: 'Button Right',
     layout: 'button-right',
-    theme: 'neon-cyber',
+    themeId: 'neon-cyber',
     description: 'Buttons right + content left',
     component: ButtonRightPreview,
     code: `import {
@@ -258,7 +265,7 @@ const containers: ContainerVariant[] = [
     id: 'button-left',
     name: 'Button Left',
     layout: 'button-left',
-    theme: 'cosmic-particles',
+    themeId: 'cosmic-particles',
     description: 'Buttons left + content right',
     component: ButtonLeftPreview,
     code: `import {
@@ -288,7 +295,7 @@ const containers: ContainerVariant[] = [
     id: 'center',
     name: 'Center',
     layout: 'center',
-    theme: 'glass-morphism',
+    themeId: 'glass-morphism',
     description: 'Centered content',
     component: CenterPreview,
     code: `import {
@@ -318,7 +325,7 @@ const containers: ContainerVariant[] = [
     id: 'two-columns',
     name: 'Two Columns',
     layout: 'two-columns',
-    theme: 'aurora-dream',
+    themeId: 'aurora-dream',
     description: 'Two equal columns',
     component: TwoColumnsPreview,
     code: `import {
@@ -349,7 +356,7 @@ const containers: ContainerVariant[] = [
     id: 'three-columns',
     name: 'Three Columns',
     layout: 'three-columns',
-    theme: 'neon-cyber',
+    themeId: 'neon-cyber',
     description: 'Three columns',
     component: ThreeColumnsPreview,
     code: `import {
@@ -390,9 +397,7 @@ export default function ContainersPage() {
   const [copySuccess, setCopySuccess] = useState(false);
 
   const selectedContainer = containers[selectedIndex];
-  
-  // ✅ جلب الـ theme من المكتبة
-  const selectedTheme = gradients.find(g => g.id === selectedContainer.theme);
+  const selectedTheme = getGradientById(selectedContainer.themeId);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(selectedContainer.code);
