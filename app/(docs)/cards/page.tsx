@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { 
   FeatureCard,
   ProductCard,
@@ -57,7 +59,6 @@ const ProductCardPreview = () => (
     description="High-quality sound with noise cancellation"
     price="99"
     oldPrice="149"
- 
     variant="solid"
   >
     <SolidBlue>Add to Cart</SolidBlue>
@@ -124,8 +125,7 @@ const cards: CardVariant[] = [
     category: 'feature',
     description: 'Glass morphism style card',
     component: FeatureCardPreview,
-    code: `
-import { FeatureCard } from 'telecop';
+    code: `import { FeatureCard } from 'telecop';
 
 export default function Page() {
   return (
@@ -187,8 +187,7 @@ export default function Page() {
     category: 'product',
     description: 'Product with image and price',
     component: ProductCardPreview,
-    code: `
-import { 
+    code: `import { 
   ProductCard, 
   SolidBlue 
 } from 'telecop';
@@ -330,7 +329,7 @@ export default function CardsPage() {
   return (
     <div className="min-h-screen bg-gray-950">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-30 ">
+      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur sticky top-0 z-30">
         <div className="w-full px-4 sm:px-6 py-4 pl-16 lg:pl-6">
           <h1 className="text-xl sm:text-2xl font-bold text-white">Telecop Cards</h1>
           <p className="text-gray-400 mt-1 text-sm">Beautiful card components - No 'use client' needed</p>
@@ -356,23 +355,43 @@ export default function CardsPage() {
               </div>
             </div>
 
-            {/* Code Block */}
-            <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden w-full">
-              <div className="flex items-center justify-between px-3 py-2 border-b border-gray-800">
-                <span className="text-xs text-gray-400 font-mono">Code</span>
+            {/* Code Block with Syntax Highlighting */}
+            <div className="bg-[#282c34] rounded-xl border border-gray-800 overflow-hidden shadow-2xl w-full">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700 bg-[#21252b]">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                  </div>
+                  <span className="text-xs text-gray-400 font-mono">MyComponent.tsx</span>
+                </div>
                 <button
                   onClick={handleCopy}
-                  className="px-2 py-1 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                  className="text-xs px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
                 >
-                  {copySuccess ? '✓' : 'Copy'}
+                  {copySuccess ? '✓ Copied!' : 'Copy'}
                 </button>
               </div>
               <div className="overflow-x-auto">
-                <pre className="p-3 text-[9px] sm:text-[10px] leading-tight">
-                  <code className="text-gray-300">
-                    {selectedCard.code}
-                  </code>
-                </pre>
+                <SyntaxHighlighter
+                  language="tsx"
+                  style={oneDark}
+                  customStyle={{
+                    margin: 0,
+                    padding: '1.25rem',
+                    background: '#282c34',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.6',
+                  }}
+                  codeTagProps={{
+                    style: {
+                      fontFamily: '"Fira Code", "Cascadia Code", Consolas, Monaco, "Courier New", monospace',
+                    }
+                  }}
+                >
+                  {selectedCard.code}
+                </SyntaxHighlighter>
               </div>
             </div>
 
