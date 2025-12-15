@@ -1,119 +1,120 @@
 'use client';
 
-import Link from 'next/link';
-import { SolidBlue, GradientPurplePink } from 'telecop';
-export default function Hero() {
+import { useState } from 'react';
+import { SolidBlue, GradientPurplePink, NeonBlue } from 'telecop';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark      } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+export default function CodePreview() {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const exampleCode = `import { SolidBlue, GradientPurplePink } from 'telecop';
+
+export default function MyComponent() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 -z-100"
-        style={{
-          backgroundImage: 'url(/hero-bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+    <div>
+      <SolidBlue>Click Me</SolidBlue>
+      <GradientPurplePink>Beautiful</GradientPurplePink>
+    </div>
+  );
+}`;
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 -z-10 bg-black/50" />
+  const handleCopy = () => {
+    navigator.clipboard.writeText(exampleCode);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
 
-      {/* Additional Gradient Overlay */}
-      <div 
-        className="absolute inset-0 -z-10"
-        style={{
-          background: `
-            radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.2), transparent 50%),
-            radial-gradient(circle at 80% 80%, rgba(255, 128, 171, 0.2), transparent 50%),
-            radial-gradient(circle at 40% 90%, rgba(88, 166, 255, 0.2), transparent 50%)
-          `
-        }}
-      />
-
-      {/* Grid Pattern Overlay */}
-      <div 
-        className="absolute inset-0 -z-10 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center relative z-10">
+  return (
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-gray-950 to-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full mb-8 backdrop-blur-sm">
-          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-          <span className="text-blue-400 text-sm font-medium">v1.0.0 Released 🎉</span>
+        {/* Section Header */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
+            Simple & Powerful
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-2xl mx-auto px-4">
+            Import, use, and ship. No complex configuration needed.
+          </p>
         </div>
 
-        {/* Main Title */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl">
-          Build Beautiful UIs
-          <br />
-          <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
-            In Minutes
-          </span>
-        </h1>
+        {/* Preview Container */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+          
+          {/* Live Preview - First on Mobile */}
+          <div className="order-1 lg:order-2">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl border border-gray-700 p-6 sm:p-8 lg:p-12 flex items-center justify-center min-h-[300px] sm:min-h-[350px] lg:min-h-[400px]">
+              <div className="space-y-4 sm:space-y-6 text-center w-full">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 lg:mb-8">Live Preview</h3>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center items-center">
+                  <SolidBlue>Click Me</SolidBlue>
+                  <GradientPurplePink>Beautiful</GradientPurplePink>
+                  <NeonBlue>Neon Blue</NeonBlue>
+                </div>
+                <p className="text-gray-400 text-xs sm:text-sm mt-4 sm:mt-6 lg:mt-8">
+                  ↑ Try clicking the buttons above
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {/* Subtitle */}
-        <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-12 drop-shadow-lg">
-          A modern React component library with 35+ buttons, 30+ themes, 
-          cards, and containers. Beautiful, accessible, and easy to use.
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <Link href="/buttons">
-            <SolidBlue>Get Started →</SolidBlue>
-          </Link>
-          <Link href="/documentation">
-            <GradientPurplePink>Documentation</GradientPurplePink>
-          </Link>
-        </div>
-
-        {/* Quick Install */}
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-gray-900/70 backdrop-blur-xl border border-gray-700/50 rounded-xl p-6">
-            <p className="text-gray-300 text-sm mb-3">Install via npm</p>
-            <div className="flex items-center gap-3 bg-black/50 rounded-lg px-4 py-3 font-mono text-left">
-              <span className="text-gray-500">$</span>
-              <code className="text-blue-400 flex-1">npm install telecop</code>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText('npm install telecop');
-                }}
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
+          {/* Code Block - Second on Mobile */}
+          <div className="order-2 lg:order-1">
+            <div className="bg-[#1e1e1e] rounded-xl sm:rounded-2xl border border-gray-800 overflow-hidden shadow-2xl">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-800 bg-[#252526]">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500" />
+                </div>
+                <button
+                  onClick={handleCopy}
+                  className="text-xs sm:text-sm px-2.5 sm:px-3 py-1 sm:py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-md sm:rounded-lg transition-colors"
+                >
+                  {copySuccess ? '✓ Copied!' : 'Copy'}
+                </button>
+              </div>
+              <div className="overflow-x-auto">
+                <SyntaxHighlighter
+                  language="tsx"
+                  style={oneDark     }
+                  customStyle={{
+                    margin: 0,
+                    padding: '1.5rem',
+                    background: '#1e1e1e',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.6',
+                  }}
+                  codeTagProps={{
+                    style: {
+                      fontFamily: '"Fira Code", "Cascadia Code", Consolas, Monaco, "Courier New", monospace',
+                    }
+                  }}
+                >
+                  {exampleCode}
+                </SyntaxHighlighter>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto mt-16">
-          <div className="backdrop-blur-sm bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">35+</div>
-            <div className="text-gray-300 text-sm">Buttons</div>
+        {/* Features List */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 lg:mt-16">
+          <div className="text-center bg-gray-900/30 rounded-xl p-4 sm:p-6 border border-gray-800/50">
+            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">⚡</div>
+            <h4 className="text-white font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Zero Config</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Install and start using immediately</p>
           </div>
-          <div className="backdrop-blur-sm bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">30+</div>
-            <div className="text-gray-300 text-sm">Themes</div>
+          <div className="text-center bg-gray-900/30 rounded-xl p-4 sm:p-6 border border-gray-800/50">
+            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🎨</div>
+            <h4 className="text-white font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Fully Customizable</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Tailwind CSS for easy styling</p>
           </div>
-          <div className="backdrop-blur-sm bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">3</div>
-            <div className="text-gray-300 text-sm">Card Types</div>
-          </div>
-          <div className="backdrop-blur-sm bg-white/5 rounded-xl p-4 border border-white/10">
-            <div className="text-3xl sm:text-4xl font-bold text-white mb-2">7</div>
-            <div className="text-gray-300 text-sm">Layouts</div>
+          <div className="text-center bg-gray-900/30 rounded-xl p-4 sm:p-6 border border-gray-800/50">
+            <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📦</div>
+            <h4 className="text-white font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">Tree Shakeable</h4>
+            <p className="text-gray-400 text-xs sm:text-sm">Only import what you need</p>
           </div>
         </div>
       </div>
