@@ -10,10 +10,10 @@ export default function Home() {
     <main className="min-h-screen bg-gray-950">
       <Navigation />
       <Hero />
-      <CodePreview />
       <Features />
       <ComponentsShowcase />
       <Footer />
     </main>
   );
 }
+
