@@ -1,6 +1,9 @@
+// app/(docs)/builder/page.tsx
 'use client';
 
 import { useState } from 'react';
+import Frame from 'react-frame-component';
+import { ComponentRenderer } from './ComponentRenderer';
 import { 
   DndContext, 
   DragEndEvent, 
@@ -9,7 +12,6 @@ import {
   useDraggable,
   useDroppable,
   closestCenter,
-  DragOverEvent,
   UniqueIdentifier
 } from '@dnd-kit/core';
 import {
@@ -50,10 +52,58 @@ const AVAILABLE_COMPONENTS: ComponentItem[] = [
     allowedZones: ['content']
   },
   { 
-    id: 'gradient-purple', 
+    id: 'solid-red', 
     type: 'button', 
-    name: 'Gradient Purple', 
+    name: 'Solid Red', 
+    icon: '🔴', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'solid-green', 
+    type: 'button', 
+    name: 'Solid Green', 
+    icon: '🟢', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'solid-purple', 
+    type: 'button', 
+    name: 'Solid Purple', 
     icon: '🟣', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'pill-button', 
+    type: 'button', 
+    name: 'Pill Button', 
+    icon: '💊', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'gradient-purple-pink', 
+    type: 'button', 
+    name: 'Gradient Purple Pink', 
+    icon: '🌈', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'gradient-blue-green', 
+    type: 'button', 
+    name: 'Gradient Blue Green', 
+    icon: '🎨', 
+    category: 'Buttons',
+    allowedZones: ['content']
+  },
+  { 
+    id: 'glass-blue', 
+    type: 'button', 
+    name: 'Glass Blue', 
+    icon: '🔷', 
     category: 'Buttons',
     allowedZones: ['content']
   },
@@ -66,10 +116,10 @@ const AVAILABLE_COMPONENTS: ComponentItem[] = [
     allowedZones: ['content']
   },
   { 
-    id: 'glass-blue', 
+    id: '3d-blue', 
     type: 'button', 
-    name: 'Glass Blue', 
-    icon: '🔷', 
+    name: '3D Blue', 
+    icon: '🎲', 
     category: 'Buttons',
     allowedZones: ['content']
   },
@@ -149,7 +199,6 @@ export default function BuilderPage() {
       const activeComponent = droppedComponents.find(c => c.id === active.id);
       const overComponent = droppedComponents.find(c => c.id === over.id);
 
-      // إذا كان السحب بين مكونات موجودة (Sortable)
       if (activeComponent && overComponent && activeComponent.zone === 'content' && overComponent.zone === 'content') {
         setDroppedComponents((items) => {
           const oldIndex = items.findIndex(i => i.id === active.id);
@@ -195,6 +244,9 @@ export default function BuilderPage() {
 
   const removeComponent = (id: string) => {
     setDroppedComponents(prev => prev.filter(c => c.id !== id));
+    if (selectedComponent === id) {
+      setSelectedComponent(null);
+    }
   };
 
   const getComponentsByZone = (zone: 'navbar' | 'content' | 'footer') => {
@@ -209,14 +261,30 @@ export default function BuilderPage() {
     return acc;
   }, {} as Record<string, ComponentItem[]>);
 
-  // البحث عن المكون النشط
   const activeComponentFromPalette = AVAILABLE_COMPONENTS.find(c => c.id === activeId);
   const activeComponentFromCanvas = droppedComponents.find(c => c.id === activeId);
-  
-  // نحدد أي واحد نستخدم
   const activeComponent = activeComponentFromPalette || activeComponentFromCanvas;
 
   const contentComponents = getComponentsByZone('content');
+  const navbarComponents = getComponentsByZone('navbar');
+  const footerComponents = getComponentsByZone('footer');
+
+  // 🎯 CSS للـ Tailwind داخل الـ iframe
+  const frameHead = `
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <style>
+      body { 
+        margin: 0; 
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  `;
 
   return (
     <div className="min-h-screen bg-gray-950 flex flex-col">
@@ -226,12 +294,15 @@ export default function BuilderPage() {
         <div className="px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-white">Page Builder</h1>
-            <p className="text-gray-400 mt-1 text-sm">Drag & Drop components • Reorder in content area</p>
+            <p className="text-gray-400 mt-1 text-sm">Drag & Drop • Reorder • Live Preview</p>
           </div>
           
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm">
-              💾 Save
+            <button 
+              onClick={() => setDroppedComponents([])}
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-sm"
+            >
+              🗑️ Clear All
             </button>
             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm">
               👁️ Preview
@@ -274,8 +345,9 @@ export default function BuilderPage() {
 
           {/* Center Canvas */}
           <main className="flex-1 overflow-auto bg-gradient-to-b from-gray-900 to-gray-950 p-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto space-y-8">
               
+              {/* Builder Canvas */}
               <div className="bg-gray-950 rounded-2xl shadow-2xl border border-gray-800 overflow-hidden">
                 
                 {/* Navbar Zone */}
@@ -283,10 +355,10 @@ export default function BuilderPage() {
                   id="navbar"
                   title="Navbar"
                   subtitle="Drop navbar component (max 1)"
-                  isEmpty={getComponentsByZone('navbar').length === 0}
+                  isEmpty={navbarComponents.length === 0}
                   className="bg-gray-900/40 border-b border-gray-800/50 min-h-[80px]"
                 >
-                  {getComponentsByZone('navbar').map((component) => (
+                  {navbarComponents.map((component) => (
                     <StaticComponentPreview
                       key={component.id}
                       component={component}
@@ -310,10 +382,10 @@ export default function BuilderPage() {
                   id="footer"
                   title="Footer"
                   subtitle="Drop footer component (max 1)"
-                  isEmpty={getComponentsByZone('footer').length === 0}
+                  isEmpty={footerComponents.length === 0}
                   className="bg-gray-900/40 border-t border-gray-800/50 min-h-[100px]"
                 >
-                  {getComponentsByZone('footer').map((component) => (
+                  {footerComponents.map((component) => (
                     <StaticComponentPreview
                       key={component.id}
                       component={component}
@@ -324,24 +396,98 @@ export default function BuilderPage() {
                   ))}
                 </DroppableZone>
               </div>
+
+              {/* 🎯 LIVE PREVIEW with Frame */}
+              <div className="bg-gray-950 rounded-2xl border border-gray-800 overflow-hidden">
+                <div className="px-6 py-4 border-b border-gray-800 bg-gray-900/50">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    <span>👁️</span> Live Preview
+                    <span className="text-xs font-normal text-gray-400">(Isolated with Frame)</span>
+                  </h3>
+                </div>
+                
+                <div className="p-6">
+                  <div className="border-4 border-blue-500/20 rounded-xl overflow-hidden shadow-2xl">
+                    <Frame
+                      initialContent={`<!DOCTYPE html><html><head>${frameHead}</head><body><div id="mountHere"></div></body></html>`}
+                      mountTarget="#mountHere"
+                      style={{
+                        width: '100%',
+                        minHeight: '600px',
+                        border: 'none',
+                        display: 'block'
+                      }}
+                    >
+                      <div style={{ minHeight: '100%' }}>
+                        {/* Navbar Preview */}
+                        {navbarComponents.map((component) => (
+                          <ComponentRenderer key={component.id} component={component} />
+                        ))}
+                        
+                        {/* Content Preview */}
+                        <div style={{ 
+                          padding: '40px 20px',
+                          display: 'flex', 
+                          flexWrap: 'wrap', 
+                          gap: '24px', 
+                          justifyContent: 'center',
+                          alignItems: 'flex-start',
+                          minHeight: '400px'
+                        }}>
+                          {contentComponents.map((component) => (
+                            <ComponentRenderer key={component.id} component={component} />
+                          ))}
+                          
+                          {contentComponents.length === 0 && navbarComponents.length === 0 && footerComponents.length === 0 && (
+                            <div style={{ 
+                              textAlign: 'center', 
+                              padding: '80px 20px', 
+                              color: 'white',
+                              width: '100%'
+                            }}>
+                              <div style={{ fontSize: '64px', marginBottom: '20px' }}>👆</div>
+                              <p style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '12px' }}>
+                                Drop components to see live preview
+                              </p>
+                              <p style={{ fontSize: '16px', opacity: 0.7 }}>
+                                This preview is isolated from the builder styles!
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Footer Preview */}
+                        {footerComponents.map((component) => (
+                          <ComponentRenderer key={component.id} component={component} />
+                        ))}
+                      </div>
+                    </Frame>
+                  </div>
+                </div>
+              </div>
             </div>
           </main>
 
-          {/* Right Panel */}
+          {/* Right Panel - Properties */}
           <aside className="w-80 border-l border-gray-800 bg-gray-900/50 overflow-y-auto flex-shrink-0">
             <div className="p-4">
               <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <span>⚙️</span> Properties
               </h2>
               {selectedComponent ? (
-                <div className="bg-gray-800/50 rounded-lg p-4">
-                  <p className="text-white text-sm">Component selected</p>
-                  <p className="text-gray-400 text-xs mt-2">Properties panel coming soon...</p>
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+                  <p className="text-white text-sm font-semibold mb-2">Selected Component</p>
+                  <p className="text-gray-400 text-xs">
+                    {droppedComponents.find(c => c.id === selectedComponent)?.name}
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-gray-700">
+                    <p className="text-gray-500 text-xs">Properties panel coming soon...</p>
+                  </div>
                 </div>
               ) : (
                 <div className="text-center py-8">
                   <div className="text-4xl mb-3">👆</div>
-                  <p className="text-gray-500 text-sm">Select a component</p>
+                  <p className="text-gray-500 text-sm">Select a component to edit</p>
                 </div>
               )}
             </div>
@@ -351,8 +497,9 @@ export default function BuilderPage() {
         {/* Drag Overlay */}
         <DragOverlay>
           {activeId && activeComponentFromPalette ? (
-            <div className="bg-blue-600 text-white px-6 py-3 rounded-xl shadow-2xl font-semibold">
-              {activeComponentFromPalette.icon} {activeComponentFromPalette.name}
+            <div className="bg-blue-600 text-white px-6 py-3 rounded-xl shadow-2xl font-semibold flex items-center gap-2">
+              <span className="text-2xl">{activeComponentFromPalette.icon}</span>
+              {activeComponentFromPalette.name}
             </div>
           ) : activeId && activeComponentFromCanvas ? (
             <div className="bg-purple-600 text-white px-6 py-3 rounded-xl shadow-2xl font-semibold">
@@ -365,7 +512,8 @@ export default function BuilderPage() {
   );
 }
 
-// Draggable Component (Sidebar)
+// ==================== SUB COMPONENTS ====================
+
 function DraggableComponent({ component }: { component: ComponentItem }) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: component.id,
@@ -394,7 +542,6 @@ function DraggableComponent({ component }: { component: ComponentItem }) {
   );
 }
 
-// Droppable Zone
 function DroppableZone({ 
   id, 
   title,
@@ -436,7 +583,6 @@ function DroppableZone({
   );
 }
 
-// Sortable Content Zone
 function SortableContentZone({
   components,
   onRemove,
@@ -485,7 +631,6 @@ function SortableContentZone({
   );
 }
 
-// Sortable Component (Content Area)
 function SortableComponent({
   component,
   onRemove,
@@ -550,7 +695,6 @@ function SortableComponent({
   );
 }
 
-// Static Component (Navbar/Footer)
 function StaticComponentPreview({
   component,
   onRemove,

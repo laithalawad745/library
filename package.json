@@ -16,8 +16,10 @@
     "next": "16.0.10",
     "react": "19.2.1",
     "react-dom": "19.2.1",
+    "react-frame-component": "^5.2.7",
     "react-syntax-highlighter": "^16.1.0",
-    "telecop": "^0.1.28"
+    "telecop": "^0.1.28",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
