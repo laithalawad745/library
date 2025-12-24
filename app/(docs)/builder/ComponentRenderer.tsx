@@ -3,20 +3,6 @@
 
 import React from 'react';
 
-// 🎯 استيراد الأزرار من المكتبة Telecop
-import {
-  SolidBlue,
-  SolidRed,
-  SolidGreen,
-  SolidPurple,
-  SolidPill,
-  GradientPurplePink,
-  GradientBlueGreen,
-  GlassBlue,
-  NeonBlue,
-  Button3DBlue,
-} from 'telecop';
-
 interface DroppedComponent {
   id: string;
   type: string;
@@ -31,47 +17,87 @@ interface ComponentRendererProps {
 
 export function ComponentRenderer({ component }: ComponentRendererProps) {
   
-  // ========== BUTTONS (من المكتبة) ==========
+  // ========== BUTTONS ==========
   if (component.type === 'button') {
     
     if (component.name === 'Solid Blue') {
-      return <SolidBlue>Click Me</SolidBlue>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          Click Me
+        </button>
+      );
     }
     
     if (component.name === 'Solid Red') {
-      return <SolidRed>Click Me</SolidRed>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-red-600 hover:bg-red-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          Click Me
+        </button>
+      );
     }
     
     if (component.name === 'Solid Green') {
-      return <SolidGreen>Click Me</SolidGreen>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          Click Me
+        </button>
+      );
     }
     
     if (component.name === 'Solid Purple') {
-      return <SolidPurple>Click Me</SolidPurple>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          Click Me
+        </button>
+      );
     }
     
     if (component.name === 'Pill Button') {
-      return <SolidPill>Pill Button</SolidPill>;
+      return (
+        <button className="px-8 py-3 rounded-full font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          Pill Button
+        </button>
+      );
     }
     
     if (component.name === 'Gradient Purple Pink') {
-      return <GradientPurplePink>Beautiful</GradientPurplePink>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50">
+          Beautiful
+        </button>
+      );
     }
     
     if (component.name === 'Gradient Blue Green') {
-      return <GradientBlueGreen>Amazing</GradientBlueGreen>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50">
+          Amazing
+        </button>
+      );
     }
     
     if (component.name === 'Glass Blue') {
-      return <GlassBlue>Glass Effect</GlassBlue>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-500/20 backdrop-blur-xl border border-blue-400/30 hover:bg-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20">
+          Glass Effect
+        </button>
+      );
     }
     
     if (component.name === 'Neon Blue') {
-      return <NeonBlue>Neon Blue</NeonBlue>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-blue-400 border-2 border-blue-400 hover:bg-blue-400 hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.8)] hover:scale-105">
+          Neon Blue
+        </button>
+      );
     }
     
     if (component.name === '3D Blue') {
-      return <Button3DBlue>3D Button</Button3DBlue>;
+      return (
+        <button className="px-6 py-3 rounded-lg font-semibold text-white bg-blue-600 shadow-[0_6px_0_rgb(37,99,235)] hover:shadow-[0_4px_0_rgb(37,99,235)] hover:translate-y-[2px] transition-all duration-150">
+          3D Button
+        </button>
+      );
     }
   }
   
@@ -174,7 +200,7 @@ export function ComponentRenderer({ component }: ComponentRendererProps) {
   // ========== CONTAINER ==========
   if (component.type === 'container') {
     return (
-      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 max-w-4xl">
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 max-w-4xl w-full">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl font-bold text-white mb-4">Container Layout</h2>
@@ -193,11 +219,12 @@ export function ComponentRenderer({ component }: ComponentRendererProps) {
     );
   }
   
-  // Default fallback
+  // Default fallback (للـ debugging)
   return (
-    <div className="bg-gray-800 text-white p-4 rounded-lg border border-gray-700">
-      <p className="font-semibold">{component.name}</p>
-      <p className="text-sm text-gray-400 mt-1">{component.type}</p>
+    <div className="bg-yellow-600 text-white p-4 rounded-lg border-2 border-yellow-400">
+      <p className="font-bold">⚠️ Unknown Component</p>
+      <p className="text-sm mt-1">Type: {component.type}</p>
+      <p className="text-sm">Name: {component.name}</p>
     </div>
   );
 }
