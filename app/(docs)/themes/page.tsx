@@ -17,8 +17,7 @@ export default function ThemesPage() {
   description="Your amazing description"
   primaryButtonText="Get Started"
   secondaryButtonText="Learn More"
-  backgroundGradient={\`${selectedGradient.gradient}\`}${selectedGradient.animation ? `
-  animationType="${selectedGradient.animation}"` : ''}
+  theme="${selectedGradient.id}"
 />`;
     navigator.clipboard.writeText(codeText);
     setCopySuccess(true);
@@ -247,8 +246,7 @@ export default function ThemesPage() {
   description="Your amazing description"
   primaryButtonText="Get Started"
   secondaryButtonText="Learn More"
-  backgroundGradient={\`${selectedGradient.gradient}\`}${selectedGradient.animation ? `
-  animationType="${selectedGradient.animation}"` : ''}
+  theme="${selectedGradient.id}"
 />`}
               </code>
             </pre>
