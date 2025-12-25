@@ -33,6 +33,7 @@ const sidebarData: SidebarSection[] = [
       { name: 'Buttons', href: '/buttons', badge: '35+' },
       { name: 'Cards', href: '/cards', badge: '3' },
       { name: 'Containers', href: '/containers', badge: '7' },
+      { name: 'Text Animations', href: '/text-animations', badge: '16' }
     ],
   },
   {
