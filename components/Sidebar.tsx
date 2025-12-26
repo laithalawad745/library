@@ -39,6 +39,7 @@ const sidebarData: SidebarSection[] = [
   {
     title: 'Styling',
     items: [
+        { name: 'Animations', href: '/animations', badge: '6' },
       { name: 'Themes', href: '/themes', badge: '30+' },
       { name: 'Gradients', href: '/gradients' },
       { name: 'Animations', href: '/animations' },
