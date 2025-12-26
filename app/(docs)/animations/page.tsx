@@ -7,7 +7,6 @@ import {
   ZoomIn,
   RotateIn
 } from 'telecop';
-
 // ==================== ANIMATION VARIANTS DATA ====================
 interface AnimationVariant {
   id: string;
