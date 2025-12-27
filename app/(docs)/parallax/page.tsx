@@ -1,4 +1,3 @@
-// app/(docs)/parallax/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -6,7 +5,6 @@ import { ParallaxScroll } from 'telecop/motion';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-// ✅ Define the type for examples
 type ExampleKey = 'hero' | 'cards' | 'allEffects';
 
 export default function ParallaxDemo() {
@@ -18,27 +16,32 @@ export default function ParallaxDemo() {
 
 export default function Hero() {
   return (
-    <div className="h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-gray-900 to-gray-950">
       {/* Background - Slowest */}
-      <ParallaxScroll 
-        speed={0.3} 
-        direction="down" 
-        blur
-      >
+      <ParallaxScroll speed={0.3} direction="down" blur>
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
       </ParallaxScroll>
 
       {/* Middle Layer */}
       <ParallaxScroll speed={0.6} direction="up" scale>
-        <div className="text-9xl opacity-10">🌊</div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-9xl opacity-10">🌊</div>
+        </div>
       </ParallaxScroll>
 
       {/* Foreground - Fastest */}
-      <ParallaxScroll speed={1.2} direction="up">
-        <h1 className="text-7xl font-bold text-white">
-          Parallax Magic
-        </h1>
-      </ParallaxScroll>
+      <div className="relative z-10 min-h-screen flex items-center justify-center">
+        <ParallaxScroll speed={1.2} direction="up">
+          <div className="text-center">
+            <h1 className="text-7xl font-bold text-white mb-4">
+              Parallax Magic
+            </h1>
+            <p className="text-2xl text-gray-300">
+              GSAP ScrollTrigger ✨
+            </p>
+          </div>
+        </ParallaxScroll>
+      </div>
     </div>
   );
 }`,
@@ -47,30 +50,33 @@ export default function Hero() {
 
 export default function Cards() {
   return (
-    <div className="space-y-32 py-20">
-      {/* Card 1 - Right + Rotate */}
-      <ParallaxScroll speed={0.8} direction="right" rotate>
-        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-12">
-          <h2>Right + Rotate</h2>
-          <p>Moves right and rotates as you scroll</p>
-        </div>
-      </ParallaxScroll>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950 py-20">
+      <div className="max-w-4xl mx-auto px-8 space-y-32">
+        
+        {/* Card 1 - Right + Rotate */}
+        <ParallaxScroll speed={0.8} direction="right" rotate>
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-12 text-white">
+            <h2 className="text-4xl font-bold mb-4">Right + Rotate</h2>
+            <p className="text-xl opacity-90">Moves right and rotates as you scroll</p>
+          </div>
+        </ParallaxScroll>
 
-      {/* Card 2 - Left + Scale */}
-      <ParallaxScroll speed={1} direction="left" scale>
-        <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-12">
-          <h2>Left + Scale</h2>
-          <p>Moves left and scales up</p>
-        </div>
-      </ParallaxScroll>
+        {/* Card 2 - Left + Scale */}
+        <ParallaxScroll speed={1} direction="left" scale>
+          <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-12 text-white">
+            <h2 className="text-4xl font-bold mb-4">Left + Scale</h2>
+            <p className="text-xl opacity-90">Moves left and scales up</p>
+          </div>
+        </ParallaxScroll>
 
-      {/* Card 3 - Up + Blur + Fade */}
-      <ParallaxScroll speed={1.5} direction="up" blur opacity>
-        <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl p-12">
-          <h2>Up + Blur + Fade</h2>
-          <p>Blurs and fades as it moves up</p>
-        </div>
-      </ParallaxScroll>
+        {/* Card 3 - Up + Blur + Fade */}
+        <ParallaxScroll speed={1.5} direction="up" blur opacity>
+          <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl p-12 text-white">
+            <h2 className="text-4xl font-bold mb-4">Up + Blur + Fade</h2>
+            <p className="text-xl opacity-90">Blurs and fades as it moves up</p>
+          </div>
+        </ParallaxScroll>
+      </div>
     </div>
   );
 }`,
@@ -79,19 +85,23 @@ export default function Cards() {
 
 export default function AllEffects() {
   return (
-    <ParallaxScroll 
-      speed={1.2} 
-      direction="down" 
-      scale 
-      rotate 
-      blur
-      opacity
-    >
-      <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-12">
-        <h2>All Effects Combined! 🔥</h2>
-        <p>Scale + Rotate + Blur + Movement + Fade</p>
-      </div>
-    </ParallaxScroll>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950 py-20 flex items-center justify-center">
+      <ParallaxScroll 
+        speed={1.2} 
+        direction="down" 
+        scale 
+        rotate 
+        blur
+        opacity
+      >
+        <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-12 text-white max-w-2xl">
+          <h2 className="text-4xl font-bold mb-4">All Effects Combined! 🔥</h2>
+          <p className="text-xl opacity-90">
+            Scale + Rotate + Blur + Movement + Fade
+          </p>
+        </div>
+      </ParallaxScroll>
+    </div>
   );
 }`
   };
@@ -121,7 +131,7 @@ export default function AllEffects() {
         </div>
       </header>
 
-      {/* Code Viewer Section - Top */}
+      {/* Code Viewer Section */}
       <div className="bg-gray-900 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="flex items-center justify-between mb-4">
@@ -209,110 +219,94 @@ export default function AllEffects() {
         </div>
       </div>
 
-      {/* Hero Section with Live Parallax */}
-      <div className="h-screen flex items-center justify-center relative overflow-hidden">
-        
-        {/* Background Layer - Slowest */}
-        <ParallaxScroll 
-          speed={0.3} 
-          direction="down" 
-          blur
-          className="absolute inset-0"
-        >
-          <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
-        </ParallaxScroll>
-
-        {/* Middle Layer */}
-        <ParallaxScroll 
-          speed={0.6} 
-          direction="up" 
-          scale
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="text-9xl opacity-10">🌊</div>
-        </ParallaxScroll>
-
-        {/* Foreground - Fastest */}
-        <ParallaxScroll 
-          speed={1.2} 
-          direction="up"
-          className="relative z-10 text-center"
-        >
-          <h1 className="text-5xl sm:text-7xl font-bold text-white mb-4">
-            Parallax Scroll
-          </h1>
-          <p className="text-xl sm:text-2xl text-gray-300">
-            GSAP ScrollTrigger Magic ✨
-          </p>
-          <p className="text-sm text-gray-500 mt-4">
-            👇 Scroll down to see the effects
-          </p>
-        </ParallaxScroll>
-      </div>
-
-      {/* Content Section */}
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-8 space-y-32">
+      {/* ✅ FIXED: Hero Section - أضفنا محتوى للسكرول */}
+      <div className="relative">
+        {/* Hero with Parallax */}
+        <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
           
-          {/* Card 1 - Move Right + Rotate */}
+          {/* Background Layer */}
           <ParallaxScroll 
-            speed={0.8} 
-            direction="right" 
-            rotate
+            speed={0.3} 
+            direction="down" 
+            blur
+            className="absolute inset-0"
           >
-            <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 sm:p-12 text-white">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Right + Rotate</h2>
-              <p className="text-lg sm:text-xl opacity-90">
-                This card moves right and rotates as you scroll
-              </p>
-            </div>
+            <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-blue-900/20" />
           </ParallaxScroll>
 
-          {/* Card 2 - Move Left + Scale */}
+          {/* Middle Layer */}
           <ParallaxScroll 
-            speed={1} 
-            direction="left" 
-            scale
-          >
-            <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 text-white">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Left + Scale</h2>
-              <p className="text-lg sm:text-xl opacity-90">
-                This card moves left and scales up
-              </p>
-            </div>
-          </ParallaxScroll>
-
-          {/* Card 3 - Move Up + Blur + Opacity */}
-          <ParallaxScroll 
-            speed={1.5} 
+            speed={0.6} 
             direction="up" 
-            blur 
-            opacity
+            scale
+            className="absolute inset-0 flex items-center justify-center"
           >
-            <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl p-8 sm:p-12 text-white">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">Up + Blur + Fade</h2>
-              <p className="text-lg sm:text-xl opacity-90">
-                This card blurs and fades as it moves up
-              </p>
-            </div>
+            <div className="text-9xl opacity-10">🌊</div>
           </ParallaxScroll>
 
-          {/* Card 4 - All Effects Combined */}
+          {/* Foreground */}
           <ParallaxScroll 
             speed={1.2} 
-            direction="down" 
-            scale 
-            rotate 
-            blur
+            direction="up"
+            className="relative z-10 text-center"
           >
-            <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-8 sm:p-12 text-white">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">All Effects! 🔥</h2>
-              <p className="text-lg sm:text-xl opacity-90">
-                Scale + Rotate + Blur + Movement
-              </p>
-            </div>
+            <h1 className="text-5xl sm:text-7xl font-bold text-white mb-4">
+              Parallax Scroll
+            </h1>
+            <p className="text-xl sm:text-2xl text-gray-300">
+              GSAP ScrollTrigger Magic ✨
+            </p>
+            <p className="text-sm text-gray-500 mt-4">
+              👇 Scroll down to see the effects
+            </p>
           </ParallaxScroll>
+        </div>
 
+        {/* ✅ أضفنا Content Section بعد الـ Hero مباشرة */}
+        <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-8 space-y-32">
+            
+            {/* Card 1 */}
+            <ParallaxScroll speed={0.8} direction="right" rotate>
+              <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 sm:p-12 text-white">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Right + Rotate</h2>
+                <p className="text-lg sm:text-xl opacity-90">
+                  This card moves right and rotates as you scroll
+                </p>
+              </div>
+            </ParallaxScroll>
+
+            {/* Card 2 */}
+            <ParallaxScroll speed={1} direction="left" scale>
+              <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 text-white">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Left + Scale</h2>
+                <p className="text-lg sm:text-xl opacity-90">
+                  This card moves left and scales up
+                </p>
+              </div>
+            </ParallaxScroll>
+
+            {/* Card 3 */}
+            <ParallaxScroll speed={1.5} direction="up" blur opacity>
+              <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl p-8 sm:p-12 text-white">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Up + Blur + Fade</h2>
+                <p className="text-lg sm:text-xl opacity-90">
+                  This card blurs and fades as it moves up
+                </p>
+              </div>
+            </ParallaxScroll>
+
+            {/* Card 4 */}
+            <ParallaxScroll speed={1.2} direction="down" scale rotate blur>
+              <div className="bg-gradient-to-br from-orange-600 to-red-600 rounded-3xl p-8 sm:p-12 text-white">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">All Effects! 🔥</h2>
+                <p className="text-lg sm:text-xl opacity-90">
+                  Scale + Rotate + Blur + Movement
+                </p>
+              </div>
+            </ParallaxScroll>
+
+          </div>
         </div>
       </div>
 
