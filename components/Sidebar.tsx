@@ -33,17 +33,18 @@ const sidebarData: SidebarSection[] = [
       { name: 'Buttons', href: '/buttons', badge: '35+' },
       { name: 'Cards', href: '/cards', badge: '3' },
       { name: 'Containers', href: '/containers', badge: '7' },
-      { name: 'Motion (GSAP)', href: '/motion', badge: 'NEW' },
+      { name: 'Parallax (GSAP)', href: '/parallax', badge: 'NEW' }, // ✅ غيّرت الاسم
+            { name: 'Motion (GSAP)', href: '/motion', badge: 'NEW' },
+
       { name: 'Text Animations', href: '/text-animations', badge: '16' }
     ],
   },
   {
     title: 'Styling',
     items: [
-        { name: 'Animations', href: '/animations', badge: '6' },
+      { name: 'Scroll Animations', href: '/animations', badge: '6' }, // ✅ غيّرت الاسم
       { name: 'Themes', href: '/themes', badge: '30+' },
       { name: 'Gradients', href: '/gradients' },
-      { name: 'Animations', href: '/animations' },
     ],
   },
   {
@@ -149,7 +150,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
                       const isExternal = item.href.startsWith('http');
 
                       return (
-                        <li key={item.name}>
+                        <li key={`${section.title}-${item.href}`}> {/* ✅ Key فريد */}
                           <Link
                             href={item.href}
                             target={isExternal ? '_blank' : undefined}
